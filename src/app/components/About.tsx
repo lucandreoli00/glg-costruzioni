@@ -129,7 +129,7 @@ export function About() {
 <section className="font-logo py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">I Nostri Progetti</h2>
+            <h2 className="font-logo text-4xl font-bold mb-4">I Nostri Progetti</h2>
             <p className="text-gray-600">Clicca sulle frecce o passa il mouse per vedere tutte le foto</p>
           </div>
 
