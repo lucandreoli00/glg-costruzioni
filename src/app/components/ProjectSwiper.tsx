@@ -98,7 +98,7 @@ export function ProjectSwiper1({
   const id = `project-${Math.random().toString(36).substr(2, 9)}`;
 
   return (
-    <div className="relative h-[320px] md:h-[380px] lg:h-[400px] rounded-2xl overflow-hidden shadow-lg">   {/* ← Altezza fissa controllata */}
+    <div className="relative h-[320px] md:h-[900px] lg:h-[450px] rounded-2xl overflow-hidden shadow-lg">   {/* ← Altezza fissa controllata */}
 
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}

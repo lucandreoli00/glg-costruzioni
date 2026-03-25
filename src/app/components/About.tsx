@@ -133,7 +133,7 @@ export function About() {
             <p className="text-gray-600">Clicca sulle frecce o passa il mouse per vedere tutte le foto</p>
           </div>
 
-          <div className="grid grid-cols-2 grid-rows-3 md:grid-cols-2 grid-rows-3 lg:grid-cols-2 grid-rows-3 gap-8">
+          <div className="grid grid-cols-1 grid-rows-3 md:grid-cols-2 grid-rows-3 lg:grid-cols-2 grid-rows-3 gap-8">
             {progetti.map((progetto) => (
               <div key={progetto.id} className="max-h[200px]">
                 <ProjectSwiper1 
