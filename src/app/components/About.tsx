@@ -1,6 +1,71 @@
 import { Target, Eye, Award, Users } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import capannone from "@/assets/FotoCellCapannone.jpeg"
+import { ProjectSwiper1 } from "./ProjectSwiper";
+
+
+const progetti = [
+  {
+    id: 1,
+    title: "Ristrutturazione Villa - Monza",
+    images: [
+      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a9c", alt: "Villa esterna" },
+      { src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea", alt: "Salotto" },
+      { src: "https://images.unsplash.com/photo-1600210492493-094691112201", alt: "Cucina" },
+      { src: capannone, alt: "Dettaglio" },   // immagine locale
+    ]
+  },
+  {
+    id: 2,
+    title: "Capannone Industriale - Agrate",
+    images: [
+      { src: capannone, alt: "Esterno capannone" },
+      { src: "https://images.unsplash.com/photo-1586528116311-ad8dd3c83137", alt: "Interno" },
+      { src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750", alt: "Uffici" },
+    ]
+  },
+  {
+    id: 3,
+    title: "Ristrutturazione Villa - Monza",
+    images: [
+      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a9c", alt: "Villa esterna" },
+      { src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea", alt: "Salotto" },
+      { src: "https://images.unsplash.com/photo-1600210492493-094691112201", alt: "Cucina" },
+      { src: capannone, alt: "Dettaglio" },   // immagine locale
+    ]
+  },
+  {
+    id: 4,
+    title: "Ristrutturazione Villa - Monza",
+    images: [
+      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a9c", alt: "Villa esterna" },
+      { src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea", alt: "Salotto" },
+      { src: "https://images.unsplash.com/photo-1600210492493-094691112201", alt: "Cucina" },
+      { src: capannone, alt: "Dettaglio" },   // immagine locale
+    ]
+  },
+  {
+    id: 5,
+    title: "Ristrutturazione Villa - Monza",
+    images: [
+      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a9c", alt: "Villa esterna" },
+      { src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea", alt: "Salotto" },
+      { src: "https://images.unsplash.com/photo-1600210492493-094691112201", alt: "Cucina" },
+      { src: capannone, alt: "Dettaglio" },   // immagine locale
+    ]
+  },
+  {
+    id: 6,
+    title: "Ristrutturazione Villa - Monza",
+    images: [
+      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a9c", alt: "Villa esterna" },
+      { src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea", alt: "Salotto" },
+      { src: "https://images.unsplash.com/photo-1600210492493-094691112201", alt: "Cucina" },
+      { src: capannone, alt: "Dettaglio" },   // immagine locale
+    ]
+  },
+  // aggiungi altri progetti...
+];
 
 export function About() {
   return (
@@ -58,7 +123,30 @@ export function About() {
         </div>
       </section>
 
-      {/* Mission & Vision */}
+
+
+      {/* I nostri progetti */}
+<section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">I Nostri Progetti</h2>
+            <p className="text-gray-600">Clicca sulle frecce o passa il mouse per vedere tutte le foto</p>
+          </div>
+
+          <div className="grid grid-cols-2 grid-rows-3 md:grid-cols-2 grid-rows-3 lg:grid-cols-2 grid-rows-3 gap-8">
+            {progetti.map((progetto) => (
+              <div key={progetto.id} className="max-h[200px]">
+                <ProjectSwiper1 
+                  images={progetto.images}
+                  projectTitle={progetto.title}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision 
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -88,6 +176,8 @@ export function About() {
           </div>
         </div>
       </section>
+
+      */}
 
       {/* Values */}
       <section className="py-16 bg-boero/15">

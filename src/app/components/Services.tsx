@@ -1,4 +1,4 @@
-import { Building2, Home, Wrench, Hammer, Paintbrush, Zap, Check } from "lucide-react";
+import { Building2, Home, Wrench, Hammer, Paintbrush, Zap, Check, Umbrella } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 export function Services() {
@@ -30,9 +30,9 @@ export function Services() {
       image: "https://images.unsplash.com/photo-1763218161026-dd8bcfa832de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3VzZSUyMHJlbm92YXRpb258ZW58MXx8fHwxNzczMDQ5MzYzfDA&ixlib=rb-4.1.0&q=80&w=1080"
     },
     {
-      icon: Wrench,
-      title: "Manutenzioni",
-      description: "Servizi di manutenzione ordinaria e straordinaria",
+      icon: Umbrella,
+      title: "Impermeabilizzazioni",
+      description: "Servizi di impermeabilizzazione, manutenzione ordinaria e straordinaria",
       features: [
         "Manutenzione ordinaria immobili",
         "Riparazione e consolidamento strutture",
