@@ -6,18 +6,20 @@ import capannone from "@/assets/FotoCellCapannone.jpeg"
 import { ProjectSwiper } from "./ProjectSwiper";
 
 
+{/*hello */}
+
 export function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative h-[650px] flex items-center justify-center">
+      <section className="relative h-[650px] flex items-center justify-center ">
         <div className="absolute inset-0 overflow-hidden">
           <ImageWithFallback
             src={capannone}
             alt="Costruzione in corso"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/50"></div>
+          <div className="absolute inset-0 bg-black/50 "></div>
         </div>
         
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">

@@ -84,7 +84,7 @@ export function About() {
         <div className="relative z-10 text-center text-white px-4">
           <h1 className="text-4xl md:text-5xl mb-4">Chi Siamo</h1>
           <p className="text-xl text-gray-200">
-            La storia di Edilizia Lombarda
+            La storia di GLG Costruzioni
           </p>
         </div>
       </section>
