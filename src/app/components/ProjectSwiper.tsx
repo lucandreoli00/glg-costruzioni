@@ -70,6 +70,7 @@ export function ProjectSwiper({
               <ImageWithFallback
                 src={img.src}
                 alt={img.alt}
+                loading = 'lazy'
                 className="w-full h-full object-cover"
               />
             </SwiperSlide>
@@ -138,6 +139,7 @@ export function ProjectSwiper1({
             <ImageWithFallback
               src={img.src}
               alt={img.alt}
+              loading = 'lazy'
               className="w-full h-full object-cover"
             />
           </SwiperSlide>

@@ -5,6 +5,25 @@ import logo from "@/assets/logo.jpeg";
 import capannone from "@/assets/FotoCellCapannone.jpeg"
 import { ProjectSwiper } from "./ProjectSwiper";
 
+const imagesP1 = import.meta.glob('@/assets/P1/*.{jpg,JPG, jpeg, png}', { eager: true })
+const projectImages1 = Object.values(imagesP1).map((mod) => (mod as {default: string }).default)
+
+const imagesP2 = import.meta.glob('@/assets/P2/*.{jpg,JPG,jpeg,png}', { eager: true })
+const projectImages2 = Object.values(imagesP2).map((mod) => (mod as {default: string }).default)
+
+const imagesP3 = import.meta.glob('@/assets/P3/*.{jpg,JPG,jpeg,png}', { eager: true })
+const projectImages3 = Object.values(imagesP3).map((mod) => (mod as {default: string }).default)
+
+const imagesP4 = import.meta.glob('@/assets/P4/*.{jpg,JPG,jpeg,png}', { eager: true })
+const projectImages4 = Object.values(imagesP4).map((mod) => (mod as {default: string }).default)
+
+const imagesP5 = import.meta.glob('@/assets/P5/*.{jpg,JPG,jpeg,png}', { eager: true })
+const projectImages5 = Object.values(imagesP5).map((mod) => (mod as {default: string }).default)
+
+const imagesP6 = import.meta.glob('@/assets/P6/*.{jpg,JPG,jpeg,png}', { eager: true })
+const projectImages6 = Object.values(imagesP6).map((mod) => (mod as {default: string }).default)
+
+
 
 
 export function Home() {
@@ -238,62 +257,33 @@ export function Home() {
 const progetti = [
   {
     id: 1,
-    title: "Ristrutturazione Villa - Monza",
-    images: [
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a9c", alt: "Villa esterna" },
-      { src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea", alt: "Salotto" },
-      { src: "https://images.unsplash.com/photo-1600210492493-094691112201", alt: "Cucina" },
-      { src: capannone, alt: "Dettaglio" },   // immagine locale
-    ]
+    title: "Platea Villasanta",
+    images: projectImages1.map(src => ({src, alt: "Platea Villasanta"}))
   },
   {
     id: 2,
-    title: "Capannone Industriale - Agrate",
-    images: [
-      { src: capannone, alt: "Esterno capannone" },
-      { src: "https://images.unsplash.com/photo-1586528116311-ad8dd3c83137", alt: "Interno" },
-      { src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750", alt: "Uffici" },
-    ]
+    title: "Platea Villasanta Esterna",
+    images: projectImages2.map(src => ({src, alt: "Platea Villasanta"}))
   },
   {
     id: 3,
-    title: "Ristrutturazione Villa - Monza",
-    images: [
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a9c", alt: "Villa esterna" },
-      { src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea", alt: "Salotto" },
-      { src: "https://images.unsplash.com/photo-1600210492493-094691112201", alt: "Cucina" },
-      { src: capannone, alt: "Dettaglio" },   // immagine locale
-    ]
+    title: "Milano Ristorazione",
+    images: projectImages3.map(src => ({src, alt: "Milano Ristorazione"}))
   },
   {
     id: 4,
-    title: "Ristrutturazione Villa - Monza",
-    images: [
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a9c", alt: "Villa esterna" },
-      { src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea", alt: "Salotto" },
-      { src: "https://images.unsplash.com/photo-1600210492493-094691112201", alt: "Cucina" },
-      { src: capannone, alt: "Dettaglio" },   // immagine locale
-    ]
+    title: "Monterosso",
+    images: projectImages4.map(src => ({src, alt: "Monterosso"}))
   },
   {
     id: 5,
-    title: "Ristrutturazione Villa - Monza",
-    images: [
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a9c", alt: "Villa esterna" },
-      { src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea", alt: "Salotto" },
-      { src: "https://images.unsplash.com/photo-1600210492493-094691112201", alt: "Cucina" },
-      { src: capannone, alt: "Dettaglio" },   // immagine locale
-    ]
+    title: "Forte dei Marmi",
+    images: projectImages5.map(src => ({src, alt: "Forte dei Marmi"}))
   },
   {
     id: 6,
-    title: "Ristrutturazione Villa - Monza",
-    images: [
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a9c", alt: "Villa esterna" },
-      { src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea", alt: "Salotto" },
-      { src: "https://images.unsplash.com/photo-1600210492493-094691112201", alt: "Cucina" },
-      { src: capannone, alt: "Dettaglio" },   // immagine locale
-    ]
+    title: "App",
+    images: projectImages6.map(src => ({src, alt: "App"}))
   },
   // aggiungi altri progetti...
 ];
