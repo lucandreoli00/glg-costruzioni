@@ -43,29 +43,37 @@ export function Home() {
           <div className="absolute inset-0 bg-black/50 "></div>
         </div>
         
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <div className="mb-6 flex justify-center">
            <img 
               src={logo} 
-              style={{filter: 'drop-shadow(0 0 2px white) drop-shadow(0 0 2px white) '}}
+              style={{ filter: 'drop-shadow( 0 0 4px white) drop-shadow( 0 0 6px white)   '}}
               alt="Costruiamo il tuo futuro - Logo Azienda" 
               className="h-36 md:h-48 w-auto drop-shadow-xl"   // regola l'altezza come preferisci
               />
           </div>
-          <p className="font-logo text-xl md:text-2xl mb-8 text-gray-200q">
+          {<p 
+            className="font-logo  text-xl font-semibold md:text-2xl mb-8 text-white" 
+            style={{filter: 'drop-shadow(0 0 1px #E30613) '}}
+          >
             Edilizia di qualità in Lombardia da oltre 20 anni
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          </p>}
+          
+          <div 
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            style={{filter: 'drop-shadow(0 0 2px white) drop-shadow(0 0 2px white)'}}
+
+          >
             <Link
               to="/servizi"
-              className="bg-accent-red hover:bg-stone-800 font-logo text-white px-8 py-3 rounded-lg transition-colors inline-flex items-center justify-center gap-2"
+              className="min-w-[240px] bg-accent-red hover:bg-stone-800 font-logo text-white px-8 py-3 rounded-lg transition-colors inline-flex items-center justify-center gap-2"
             >
               I Nostri Servizi
               <ArrowRight className="size-5" />
             </Link>
             <Link
               to="/contatti"
-              className="bg-accent-red hover:bg-stone-800 font-logo text-white px-8 py-3 rounded-lg transition-colors inline-flex items-center justify-center gap-2"
+              className="min-w-[240px] bg-accent-red hover:bg-stone-800 font-logo text-white px-8 py-3 rounded-lg transition-colors inline-flex items-center justify-center gap-2"
             >
               Richiedi Preventivo
               <ArrowRight className="size-5" />

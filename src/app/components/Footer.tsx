@@ -1,6 +1,6 @@
 import { MapPin, Phone, Mail } from "lucide-react";
 import { Link } from "react-router";
-import logo from "@/assets/logo.jpeg";
+import logo from "@/assets/glgLogo.svg";
 
 export function Footer() {
   return (
@@ -10,7 +10,10 @@ export function Footer() {
           {/* Company Info */}
           <div>
             <div className="mb-4">
-              <img src={logo} alt="GLG Costruzioni" className="h-12" />
+              <img src={logo}
+                 alt="GLG Costruzioni"
+                 style={{ filter: 'drop-shadow( 0 0 1px white) drop-shadow( 0 0 1px white)   '}}
+                 className="h-12" />
             </div>
             <p className="text-sm text-gray-50">
               Da oltre 20 anni realizziamo costruzioni di qualità in tutta la Lombardia.
