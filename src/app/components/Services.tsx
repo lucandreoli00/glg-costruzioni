@@ -1,5 +1,8 @@
 import { Building2, Home, Wrench, Hammer, Paintbrush, Zap, Check, Umbrella } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import nuoveCostruzioni from "@/assets/NuoveCostruzioni.webp"
+import ristrutturazioni from "@/assets/P6/2.webp"
+import impermeabilizzazioni from "@/assets/impermeabilizzazioni.webp"
 
 export function Services() {
   const services = [
@@ -14,7 +17,7 @@ export function Services() {
         "Gestione completa delle pratiche edilizie",
         "Coordinamento sicurezza cantiere"
       ],
-      image: "https://images.unsplash.com/photo-1630259970029-7b1e1160243e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBidWlsZGluZyUyMHNpdGV8ZW58MXx8fHwxNzczMDQyMjg2fDA&ixlib=rb-4.1.0&q=80&w=1080"
+      image: nuoveCostruzioni
     },
     {
       icon: Home,
@@ -27,7 +30,7 @@ export function Services() {
         "Riqualificazione energetica",
         "Cambio destinazione d'uso"
       ],
-      image: "https://images.unsplash.com/photo-1763218161026-dd8bcfa832de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3VzZSUyMHJlbm92YXRpb258ZW58MXx8fHwxNzczMDQ5MzYzfDA&ixlib=rb-4.1.0&q=80&w=1080"
+      image: ristrutturazioni 
     },
     {
       icon: Umbrella,
@@ -40,7 +43,7 @@ export function Services() {
         "Rifacimento tetti e coperture",
         "Manutenzione impianti"
       ],
-      image: "https://images.unsplash.com/photo-1704297275778-8763889fa47d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tZXJjaWFsJTIwYnVpbGRpbmclMjBjb25zdHJ1Y3Rpb258ZW58MXx8fHwxNzcyOTcyNDkxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+      image: impermeabilizzazioni
     },
     {
       icon: Hammer,
@@ -124,7 +127,7 @@ export function Services() {
                 </div>
 
                 <div className={index % 2 === 1 ? "lg:order-1" : ""}>
-                  <div className="rounded-lg overflow-hidden shadow-lg h-[400px]">
+                  <div className="rounded-lg overflow-hidden shadow-accent-red shadow-lg h-[400px]">
                     <ImageWithFallback
                       src={service.image}
                       alt={service.title}

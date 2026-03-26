@@ -4,6 +4,9 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import logo from "@/assets/logo.jpeg";
 import capannone from "@/assets/FotoCellCapannone.jpeg"
 import { ProjectSwiper } from "./ProjectSwiper";
+import nuoveCostruzioni from "@/assets/NuoveCostruzioni.webp"
+import ristrutturazioni from "@/assets/P6/2.webp"
+import impermeabilizzazioni from "@/assets/impermeabilizzazioni.webp"
 
 const imagesP1 = import.meta.glob('@/assets/P1/*.{jpg,JPG, jpeg, png,webp}', { eager: true })
 const projectImages1 = Object.values(imagesP1).map((mod) => (mod as {default: string }).default)
@@ -28,7 +31,7 @@ const projectImages6 = Object.values(imagesP6).map((mod) => (mod as {default: st
 
 export function Home() {
   return (
-    <div>
+    <div className="font-logo">
       {/* Hero Section */}
       <section className="relative h-[650px] flex items-center justify-center ">
         <div className="absolute inset-0 overflow-hidden">
@@ -83,10 +86,13 @@ export function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-boero/15 rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:shadow-accent-red transition-shadow">
+            <Link
+              to = "/servizi"
+              className="bg-boero/15 rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:shadow-accent-red transition-shadow">
+            
               <div className="h-48 overflow-hidden">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1630259970029-7b1e1160243e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBidWlsZGluZyUyMHNpdGV8ZW58MXx8fHwxNzczMDQyMjg2fDA&ixlib=rb-4.1.0&q=80&w=1080"
+                  src={nuoveCostruzioni}
                   alt="Nuove Costruzioni"
                   className="w-full h-full object-cover"
                 />
@@ -104,12 +110,14 @@ export function Home() {
                   <ArrowRight className="size-4" />
                 </Link>
               </div>
-            </div>
+            </Link>
 
-            <div className="bg-boero/15 rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:shadow-accent-red transition-shadow">
+            <Link
+              to = "/servizi"
+              className="bg-boero/15 rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:shadow-accent-red transition-shadow">
               <div className="h-48 overflow-hidden">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1763218161026-dd8bcfa832de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3VzZSUyMHJlbm92YXRpb258ZW58MXx8fHwxNzczMDQ5MzYzfDA&ixlib=rb-4.1.0&q=80&w=1080"
+                  src={ristrutturazioni}
                   alt="Ristrutturazioni"
                   className="w-full h-full object-cover"
                 />
@@ -127,12 +135,14 @@ export function Home() {
                   <ArrowRight className="size-4" />
                 </Link>
               </div>
-            </div>
+            </Link>
 
-            <div className="bg-boero/15 rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:shadow-accent-red transition-shadow">
+            <Link 
+              to = "/servizi"
+              className="bg-boero/15 rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:shadow-accent-red transition-shadow">
               <div className="h-48 overflow-hidden">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1704297275778-8763889fa47d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tZXJjaWFsJTIwYnVpbGRpbmclMjBjb25zdHJ1Y3Rpb258ZW58MXx8fHwxNzcyOTcyNDkxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+                  src={impermeabilizzazioni}
                   alt="Manutenzioni"
                   className="w-full h-full object-cover"
                 />
@@ -150,7 +160,7 @@ export function Home() {
                   <ArrowRight className="size-4" />
                 </Link>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -158,6 +168,7 @@ export function Home() {
       {/* Stats Section*/}
       <section className="py-16 bg-white text-stone-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-center text-black font-logo text-3xl md:text-4xl mb-4">Esplora i nostri progetti</h2>
           <div className="grid grid-cols-2 md:grid-cols-6 gap-8 text-center">
             
             {progetti.map((progetto) => (
@@ -237,7 +248,7 @@ export function Home() {
       {/* CTA Section */}
       <section className="py-16 bg-white text-stone-700">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-logo text-3xl md:text-4xl mb-4">Hai un Progetto in Mente?</h2>
+          <h2 className="font-logo text-3xl text-black md:text-4xl mb-4">Hai un Progetto in Mente?</h2>
           <p className="font-logo text-xl text-stone-700 mb-8">
             Contattaci per un preventivo gratuito e senza impegno
           </p>
