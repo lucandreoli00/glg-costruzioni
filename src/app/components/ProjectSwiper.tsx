@@ -43,7 +43,7 @@ export function ProjectSwiper({
 
 
     
-      <div className="relative h-[100px] md:h-[100px] lg:h-[100px] rounded-2xl overflow-hidden shadow-lg shadow-boero/75 hover:shadow-accent-red">   {/* ← Altezza fissa controllata */}
+      <div className="relative h-[100px] md:h-[100px] lg:h-[100px] rounded-2xl overflow-hidden shadow-lg shadow-boero/75 hover:shadow-accent-red group">   {/* ← Altezza fissa controllata */}
 
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
@@ -76,6 +76,11 @@ export function ProjectSwiper({
             </SwiperSlide>
           ))}
         </Swiper>
+
+        {/* Overlay titolo on hover */}
+        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
+          <h3 className="text-white font-semibold drop-shadow-md text-center px-4">{projectTitle}</h3>
+        </div>
 
         
 
