@@ -70,8 +70,11 @@ export function Services() {
         "Decorazioni e stucchi"
       ],
       image: "https://images.unsplash.com/photo-1763218161026-dd8bcfa832de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3VzZSUyMHJlbm92YXRpb258ZW58MXx8fHwxNzczMDQ5MzYzfDA&ixlib=rb-4.1.0&q=80&w=1080"
-    },
-    {
+    }
+    
+  ];
+
+  {/*
       icon: Zap,
       title: "Impianti",
       description: "Installazione e manutenzione impianti tecnologici",
@@ -83,8 +86,7 @@ export function Services() {
         "Impianti fotovoltaici"
       ],
       image: "https://images.unsplash.com/photo-1704297275778-8763889fa47d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tZXJjaWFsJTIwYnVpbGRpbmclMjBjb25zdHJ1Y3Rpb258ZW58MXx8fHwxNzcyOTcyNDkxfDA&ixlib=rb-4.1.0&q=80&w=1080"
-    }
-  ];
+    */}
 
   return (
     <div className="font-logo">
