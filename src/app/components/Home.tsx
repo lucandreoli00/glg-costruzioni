@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { ArrowRight, Building2, Users, Award, Clock } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import logo from "@/assets/logo.jpeg";
+import logo from "@/assets/glgLogo.svg";
 import capannone from "@/assets/FotoCellCapannone.jpeg"
 import { ProjectSwiper } from "./ProjectSwiper";
 import nuoveCostruzioni from "@/assets/NuoveCostruzioni.webp"
@@ -47,6 +47,7 @@ export function Home() {
           <div className="mb-6 flex justify-center">
            <img 
               src={logo} 
+              style={{filter: 'drop-shadow(0 0 2px white) drop-shadow(0 0 3px white)'}}
               alt="Costruiamo il tuo futuro - Logo Azienda" 
               className="h-36 md:h-48 w-auto drop-shadow-xl"   // regola l'altezza come preferisci
               />
