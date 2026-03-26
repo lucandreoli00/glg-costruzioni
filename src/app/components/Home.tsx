@@ -47,7 +47,7 @@ export function Home() {
           <div className="mb-6 flex justify-center">
            <img 
               src={logo} 
-              style={{filter: 'drop-shadow(0 0 2px white) drop-shadow(0 0 3px white)'}}
+              style={{ filter: 'drop-shadow( 0 0 2px boero/15) drop-shadow( 0 0 2px boero/15) drop-shadow( 0 0 2px boero/15)   '}}
               alt="Costruiamo il tuo futuro - Logo Azienda" 
               className="h-36 md:h-48 w-auto drop-shadow-xl"   // regola l'altezza come preferisci
               />
