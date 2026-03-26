@@ -121,7 +121,7 @@ export function ProjectSwiper1({
         loop={true}
         autoplay={{
           delay: autoplayDelay,
-          disableOnInteraction: false,
+          disableOnInteraction: true,
           pauseOnMouseEnter: true,
         }}
         navigation={{
@@ -153,15 +153,15 @@ export function ProjectSwiper1({
 
       {/* Frecce */}
       <button 
-        className={`${id}-prev absolute left-4 top-1/2 -translate-y-1/2 lg:z-50 
-                   bg-white/90 hover:bg-white text-gray-900 p-3 rounded-full shadow-xl transition-all hover:scale-110`}
+        className={`${id}-prev absolute left-4 top-1/2 -translate-y-1/2 md:z-50 lg:z-50 
+                   bg-white/25 hover:bg-white text-accent-red font-extrabold p-3 rounded-full shadow-xl transition-all hover:scale-110`}
       >
-        <ChevronLeft className="size-7" />
+        <ChevronLeft className="size-7 font-extrabold" />
       </button>
 
       <button 
-        className={`${id}-next absolute right-4 top-1/2 -translate-y-1/2 lg:z-50 
-                   bg-white/90 hover:bg-white text-gray-900 p-3 rounded-full shadow-xl transition-all hover:scale-110`}
+        className={`${id}-next absolute right-4 top-1/2 -translate-y-1/2 md:z-50 lg:z-50 
+                   bg-white/25 hover:bg-white text-accent-red font-extrabold p-3 rounded-full shadow-xl transition-all hover:scale-110`}
       >
         <ChevronRight className="size-7" />
       </button>

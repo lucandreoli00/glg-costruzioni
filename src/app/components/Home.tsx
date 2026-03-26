@@ -38,7 +38,7 @@ export function Home() {
           <ImageWithFallback
             src={capannone}
             alt="Costruzione in corso"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover "
           />
           <div className="absolute inset-0 bg-black/50 "></div>
         </div>
@@ -79,7 +79,7 @@ export function Home() {
       <section className="py-16 bg-boero/15">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-logo text-3xl md:text-4xl mb-4">I Nostri Servizi</h2>
+            <h2 className="font-logo text-3xl font-semibold md:text-4xl mb-4">I Nostri Servizi</h2>
             <p className="font-logo text-gray-600 text-lg">
               Soluzioni complete per ogni esigenza edilizia
             </p>
@@ -102,13 +102,12 @@ export function Home() {
                 <p className="font-logo text-gray-600 mb-4">
                   Realizziamo edifici residenziali e commerciali chiavi in mano
                 </p>
-                <Link
-                  to="/servizi"
+                <div
                   className="font-logo text-accent-red hover:text-stone-800 inline-flex items-center gap-1"
                 >
                   Scopri di più
                   <ArrowRight className="size-4" />
-                </Link>
+                </div>
               </div>
             </Link>
 
@@ -127,13 +126,12 @@ export function Home() {
                 <p className="font-logo text-gray-600 mb-4">
                   Rinnoviamo e riqualifichiamo immobili esistenti
                 </p>
-                <Link
-                  to="/servizi"
-                  className="font-logo text-accent-red hover:text-orange-700 inline-flex items-center gap-1"
+                <div
+                  className="font-logo text-accent-red hover:text-stone-700 inline-flex items-center gap-1"
                 >
                   Scopri di più
                   <ArrowRight className="size-4" />
-                </Link>
+                </div>
               </div>
             </Link>
 
@@ -152,13 +150,12 @@ export function Home() {
                 <p className="font-logo text-gray-600 mb-4">
                   Servizi di impermeabilizzazione, manutenzione ordinaria e straordinaria
                 </p>
-                <Link
-                  to="/servizi"
-                  className="font-logo text-accent-red hover:text-orange-700 inline-flex items-center gap-1"
+                <div
+                  className="font-logo text-accent-red hover:text-stone-700 inline-flex items-center gap-1"
                 >
                   Scopri di più
                   <ArrowRight className="size-4" />
-                </Link>
+                </div>
               </div>
             </Link>
           </div>
@@ -168,7 +165,7 @@ export function Home() {
       {/* Stats Section*/}
       <section className="py-16 bg-white text-stone-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-black font-logo text-3xl md:text-4xl mb-4">Esplora i nostri progetti</h2>
+          <h2 className="text-center text-black font-logo font-semibold text-3xl md:text-4xl mb-4">Esplora i nostri progetti</h2>
           <div className="grid grid-cols-2 md:grid-cols-6 gap-8 text-center">
             
             {progetti.map((progetto) => (
@@ -195,7 +192,7 @@ export function Home() {
       <section className="py-16 bg-boero/15">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-logo text-3xl md:text-4xl mb-4">Perché Sceglierci</h2>
+            <h2 className="font-logo text-3xl font-semibold md:text-4xl mb-4">Perché Sceglierci</h2>
             <p className="font-logo text-gray-600 text-lg max-w-2xl mx-auto">
               La nostra esperienza e professionalità al servizio dei tuoi progetti
             </p>
@@ -248,7 +245,7 @@ export function Home() {
       {/* CTA Section */}
       <section className="py-16 bg-white text-stone-700">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-logo text-3xl text-black md:text-4xl mb-4">Hai un Progetto in Mente?</h2>
+          <h2 className="font-logo text-3xl text-black font-semibold md:text-4xl mb-4">Hai un Progetto in Mente?</h2>
           <p className="font-logo text-xl text-stone-700 mb-8">
             Contattaci per un preventivo gratuito e senza impegno
           </p>
