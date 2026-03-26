@@ -3,22 +3,22 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import capannone from "@/assets/FotoCellCapannone.jpeg"
 import { ProjectSwiper1 } from "./ProjectSwiper";
 
-const imagesP1 = import.meta.glob('@/assets/P1/*.{jpg,JPG, jpeg, png}', { eager: true })
+const imagesP1 = import.meta.glob('@/assets/P1/*.{jpg,JPG, jpeg, png,webp}', { eager: true })
 const projectImages1 = Object.values(imagesP1).map((mod) => (mod as {default: string }).default)
 
-const imagesP2 = import.meta.glob('@/assets/P2/*.{jpg,JPG,jpeg,png}', { eager: true })
+const imagesP2 = import.meta.glob('@/assets/P2/*.{jpg,JPG,jpeg,png,webp}', { eager: true })
 const projectImages2 = Object.values(imagesP2).map((mod) => (mod as {default: string }).default)
 
-const imagesP3 = import.meta.glob('@/assets/P3/*.{jpg,JPG,jpeg,png}', { eager: true })
+const imagesP3 = import.meta.glob('@/assets/P3/*.{jpg,JPG,jpeg,png,webp}', { eager: true })
 const projectImages3 = Object.values(imagesP3).map((mod) => (mod as {default: string }).default)
 
-const imagesP4 = import.meta.glob('@/assets/P4/*.{jpg,JPG,jpeg,png}', { eager: true })
+const imagesP4 = import.meta.glob('@/assets/P4/*.{jpg,JPG,jpeg,png,webp}', { eager: true })
 const projectImages4 = Object.values(imagesP4).map((mod) => (mod as {default: string }).default)
 
-const imagesP5 = import.meta.glob('@/assets/P5/*.{jpg,JPG,jpeg,png}', { eager: true })
+const imagesP5 = import.meta.glob('@/assets/P5/*.{jpg,JPG,jpeg,png,webp}', { eager: true })
 const projectImages5 = Object.values(imagesP5).map((mod) => (mod as {default: string }).default)
 
-const imagesP6 = import.meta.glob('@/assets/P6/*.{jpg,JPG,jpeg,png}', { eager: true })
+const imagesP6 = import.meta.glob('@/assets/P6/*.{jpg,JPG,jpeg,png,webp}', { eager: true })
 const projectImages6 = Object.values(imagesP6).map((mod) => (mod as {default: string }).default)
 
 
