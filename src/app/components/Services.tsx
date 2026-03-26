@@ -84,7 +84,7 @@ export function Services() {
   ];
 
   return (
-    <div>
+    <div className="font-logo">
       {/* Hero Section */}
       <section className="bg-boero/15 text-stone-700 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

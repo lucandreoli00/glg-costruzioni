@@ -3,66 +3,55 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import capannone from "@/assets/FotoCellCapannone.jpeg"
 import { ProjectSwiper1 } from "./ProjectSwiper";
 
+const imagesP1 = import.meta.glob('@/assets/P1/*.{jpg,JPG, jpeg, png}', { eager: true })
+const projectImages1 = Object.values(imagesP1).map((mod) => (mod as {default: string }).default)
+
+const imagesP2 = import.meta.glob('@/assets/P2/*.{jpg,JPG,jpeg,png}', { eager: true })
+const projectImages2 = Object.values(imagesP2).map((mod) => (mod as {default: string }).default)
+
+const imagesP3 = import.meta.glob('@/assets/P3/*.{jpg,JPG,jpeg,png}', { eager: true })
+const projectImages3 = Object.values(imagesP3).map((mod) => (mod as {default: string }).default)
+
+const imagesP4 = import.meta.glob('@/assets/P4/*.{jpg,JPG,jpeg,png}', { eager: true })
+const projectImages4 = Object.values(imagesP4).map((mod) => (mod as {default: string }).default)
+
+const imagesP5 = import.meta.glob('@/assets/P5/*.{jpg,JPG,jpeg,png}', { eager: true })
+const projectImages5 = Object.values(imagesP5).map((mod) => (mod as {default: string }).default)
+
+const imagesP6 = import.meta.glob('@/assets/P6/*.{jpg,JPG,jpeg,png}', { eager: true })
+const projectImages6 = Object.values(imagesP6).map((mod) => (mod as {default: string }).default)
+
 
 const progetti = [
   {
     id: 1,
-    title: "Ristrutturazione Villa - Monza",
-    images: [
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a9c", alt: "Villa esterna" },
-      { src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea", alt: "Salotto" },
-      { src: "https://images.unsplash.com/photo-1600210492493-094691112201", alt: "Cucina" },
-      { src: capannone, alt: "Dettaglio" },   // immagine locale
-    ]
+    title: "Platea Villasanta",
+    images: projectImages1.map(src => ({src, alt: "Platea Villasanta"}))
   },
   {
     id: 2,
-    title: "Capannone Industriale - Agrate",
-    images: [
-      { src: capannone, alt: "Esterno capannone" },
-      { src: "https://images.unsplash.com/photo-1586528116311-ad8dd3c83137", alt: "Interno" },
-      { src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750", alt: "Uffici" },
-    ]
+    title: "Platea Villasanta Esterna",
+    images: projectImages2.map(src => ({src, alt: "Platea Villasanta Esterna"}))
   },
   {
     id: 3,
-    title: "Ristrutturazione Villa - Monza",
-    images: [
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a9c", alt: "Villa esterna" },
-      { src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea", alt: "Salotto" },
-      { src: "https://images.unsplash.com/photo-1600210492493-094691112201", alt: "Cucina" },
-      { src: capannone, alt: "Dettaglio" },   // immagine locale
-    ]
+    title: "Milano Ristorazione",
+    images: projectImages3.map(src => ({src, alt: "Milano Ristorazione"}))
   },
   {
     id: 4,
-    title: "Ristrutturazione Villa - Monza",
-    images: [
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a9c", alt: "Villa esterna" },
-      { src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea", alt: "Salotto" },
-      { src: "https://images.unsplash.com/photo-1600210492493-094691112201", alt: "Cucina" },
-      { src: capannone, alt: "Dettaglio" },   // immagine locale
-    ]
+    title: "Monterosso",
+    images: projectImages4.map(src => ({src, alt: "Monterosso"}))
   },
   {
     id: 5,
-    title: "Ristrutturazione Villa - Monza",
-    images: [
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a9c", alt: "Villa esterna" },
-      { src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea", alt: "Salotto" },
-      { src: "https://images.unsplash.com/photo-1600210492493-094691112201", alt: "Cucina" },
-      { src: capannone, alt: "Dettaglio" },   // immagine locale
-    ]
+    title: "Forte dei Marmi",
+    images: projectImages5.map(src => ({src, alt: "Forte dei Marmi"}))
   },
   {
     id: 6,
-    title: "Ristrutturazione Villa - Monza",
-    images: [
-      { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a9c", alt: "Villa esterna" },
-      { src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea", alt: "Salotto" },
-      { src: "https://images.unsplash.com/photo-1600210492493-094691112201", alt: "Cucina" },
-      { src: capannone, alt: "Dettaglio" },   // immagine locale
-    ]
+    title: "App",
+    images: projectImages6.map(src => ({src, alt: "App"}))
   },
   // aggiungi altri progetti...
 ];
@@ -82,8 +71,8 @@ export function About() {
         </div>
         
         <div className="relative z-10 text-center text-white px-4">
-          <h1 className="text-4xl md:text-5xl mb-4">Chi Siamo</h1>
-          <p className="text-xl text-gray-200">
+          <h1 className="font-logo text-4xl md:text-5xl mb-4">Chi Siamo</h1>
+          <p className="font-logo text-xl text-gray-200">
             La storia di GLG Costruzioni
           </p>
         </div>
@@ -94,8 +83,8 @@ export function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl mb-6">La Nostra Storia</h2>
-              <div className="space-y-4 text-gray-700">
+              <h2 className="font-logo text-3xl mb-6">La Nostra Storia</h2>
+              <div className="space-y-4 font-logo text-gray-700">
                 <p>
                   GLG Costruzioni nasce nel 2015 dalla passione e dall'esperienza del Geom. Roberto Andreoli. Da oltre 10 anni operiamo in tutta la Lombardia, realizzando progetti di 
                   costruzione e ristrutturazione di alta qualità.
@@ -126,14 +115,14 @@ export function About() {
 
 
       {/* I nostri progetti */}
-<section className="py-16 bg-white">
+<section className="font-logo py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">I Nostri Progetti</h2>
+            <h2 className="font-logo text-4xl font-bold mb-4">I Nostri Progetti</h2>
             <p className="text-gray-600">Clicca sulle frecce o passa il mouse per vedere tutte le foto</p>
           </div>
 
-          <div className="grid grid-cols-1 grid-rows-3 md:grid-cols-2 grid-rows-3 lg:grid-cols-2 grid-rows-3 gap-8">
+          <div className="grid grid-cols-1 grid-rows-3 md:grid-cols-1 grid-rows-3 lg:grid-cols-2 grid-rows-3 gap-8">
             {progetti.map((progetto) => (
               <div key={progetto.id} className="max-h[200px]">
                 <ProjectSwiper1 
@@ -180,7 +169,7 @@ export function About() {
       */}
 
       {/* Values */}
-      <section className="py-16 bg-boero/15">
+      <section className="font-logo py-16 bg-boero/15">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl mb-4">I Nostri Valori</h2>
@@ -234,7 +223,7 @@ export function About() {
       </section>
 
       {/* Team */}
-      <section className="py-16 bg-white">
+      <section className="font-logo py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl mb-4">Il Nostro Team</h2>
