@@ -80,9 +80,6 @@ export function Contact() {
                     <a href="tel:+39039616229" className="text-gray-600 hover:text-stone-700">
                       +39 039 616229
                     </a>
-                    <p className="text-gray-600 mt-1">
-                      Cellulare: <a href="tel:+393331234567" className="hover:text-stone-700">+39 333 123 4567</a>
-                    </p>
                   </div>
                 </div>
 
@@ -95,9 +92,6 @@ export function Contact() {
                     <a href="mailto:info@glgcostruzioni.it" className="text-gray-600 hover:text-stone-700">
                       info@glgcostruzioni.it
                     </a>
-                    <p className="text-gray-600 mt-1">
-                      Preventivi: <a href="mailto:preventivi@glgcostruzioni.it" className="hover:text-stone-700">preventivi@glgcostruzioni.it</a>
-                    </p>
                   </div>
                 </div>
 
@@ -108,7 +102,7 @@ export function Contact() {
                   <div>
                     <h3 className="font-semibold mb-1">Orari di Apertura</h3>
                     <p className="text-gray-600">
-                      Lunedì - Venerdì: 8:30 - 18:00<br />
+                      Lunedì - Venerdì: 8:00 - 18:00<br />
                       Sabato: Chiuso<br />
                       Domenica: Chiuso
                     </p>
