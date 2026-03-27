@@ -16,7 +16,7 @@ export function Footer() {
                  className="h-12" />
             </div>
             <p className="text-sm text-gray-50">
-              Da oltre 20 anni realizziamo costruzioni di qualità in tutta la Lombardia.
+              Da oltre 10 anni realizziamo costruzioni di qualità in tutta la Lombardia.
               Professionalità, esperienza e attenzione al cliente.
             </p>
           </div>
@@ -54,7 +54,7 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2 text-white">
                 <MapPin className="size-5 text-accent-red flex-shrink-0 mt-0.5" />
-                <span>Via Oreno 25, 20863 Concorezzo (MB), Lombardia</span>
+                <span>Via Oreno 25, 20863 Concorezzo (MB)</span>
               </li>
               <li className="flex items-center gap-2 text-white">
                 <Phone className="size-5 text-accent-red flex-shrink-0" />
