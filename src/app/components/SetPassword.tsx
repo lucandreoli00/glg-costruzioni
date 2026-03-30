@@ -27,7 +27,9 @@ export function SetPassword() {
 
     setLoading(true)
     try {
-      const { error } = await supabase.auth.updateUser({ password })
+      const { error } = await supabase.auth.updateUser({ password,
+        data: {password_set: true}
+       })
       if (error) throw error
       navigate('/login')
       setSuccess(true)
