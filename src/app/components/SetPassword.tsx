@@ -12,22 +12,12 @@ export function SetPassword() {
   const [success, setSuccess] = useState(false)
   const [sessionReady, setSessionReady] = useState(false)
 
-
-
-  useEffect(() => {
-  // Supabase gestisce automaticamente il token dall'URL
-  // dobbiamo solo aspettare che la sessione sia pronta
+useEffect(() => {
   supabase.auth.getSession().then(({ data: { session } }) => {
     if (session) {
       setSessionReady(true)
     } else {
-      // aspetta l'evento di auth
-      const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-        if (event === 'SIGNED_IN' && session) {
-          setSessionReady(true)
-          subscription.unsubscribe()
-        }
-      })
+      navigate('/login')
     }
   })
 }, [])
