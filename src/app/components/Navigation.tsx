@@ -1,17 +1,22 @@
 import { Link, useLocation } from "react-router";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
+import { LogIn, LogOut } from "lucide-react";
 import logo from "@/assets/glgLogo.svg";
+import { supabase } from "@/lib/supabase";
 
 export function Navigation() {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, isAdmin } = useAuth();
 
   const navLinks = [
     { path: "/", label: "Home" },
     { path: "/chi-siamo", label: "Chi Siamo" },
     { path: "/servizi", label: "Servizi" },
     { path: "/contatti", label: "Contatti" },
+    { path: user ? (isAdmin ? "/admin" : "/portale") : "/login", label: user ? (isAdmin ? "Admin" : "Portale") : "Area Riservata" },
   ];
 
   const isActive = (path: string) => {
@@ -44,6 +49,8 @@ export function Navigation() {
               </Link>
             ))}
           </div>
+
+          
 
           {/* Mobile Menu Button */}
           <button
