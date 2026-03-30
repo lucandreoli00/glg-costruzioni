@@ -9,16 +9,11 @@ export default function App() {
     if (event === 'PASSWORD_RECOVERY') {
       window.location.href = '/set-password'
     }
-    if (event === 'USER_UPDATED') {
-      window.location.href = '/login'
-    }
     if (event === 'SIGNED_IN' && session?.user) {
-      // controlla se l'utente non ha ancora una password impostata
-      // gli utenti invitati hanno confirmed_at ma non hanno mai fatto login con password
-      const isInvitedUser = session.user.app_metadata?.provider === 'email' && 
-        !session.user.user_metadata?.password_set
+      const passwordSet = session.user.user_metadata?.password_set
+      const isInvite = window.location.hash.includes('type=invite')
       
-      if (isInvitedUser) {
+      if (isInvite && !passwordSet) {
         window.location.href = '/set-password'
       }
     }
