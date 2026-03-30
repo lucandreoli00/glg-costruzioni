@@ -11,6 +11,8 @@ export function SetPassword() {
   const navigate = useNavigate()
   const [success, setSuccess] = useState(false)
 
+
+
   useEffect(() => {
   // controlla se siamo arrivati da un invito
   const hash = window.location.hash
@@ -21,6 +23,27 @@ export function SetPassword() {
   // se non c'è token nell'URL, reindirizza al login
   if (!hash.includes('access_token')) {
     navigate('/login')
+  }
+}, [])
+
+useEffect(() => {
+  const hash = window.location.hash
+  
+  if (!hash.includes('access_token')) {
+    navigate('/login')
+    return
+  }
+
+  // Estrai i parametri dall'hash e scambia il token con una sessione
+  const params = new URLSearchParams(hash.substring(1))
+  const accessToken = params.get('access_token')
+  const refreshToken = params.get('refresh_token')
+
+  if (accessToken && refreshToken) {
+    supabase.auth.setSession({
+      access_token: accessToken,
+      refresh_token: refreshToken
+    })
   }
 }, [])
 
