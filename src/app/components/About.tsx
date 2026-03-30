@@ -233,19 +233,9 @@ export function About() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="bg-boero/15 p-6 rounded-lg shadow-md text-center">
+              <div className="bg-boero/15 p-6 rounded-lg shadow-md text-center">
               <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-accent-red">10+</span>
-              </div>
-              <h3 className="font-semibold text-xl mb-2">Ingegneri</h3>
-              <p className="text-gray-600 text-sm">
-                Esperti in progettazione strutturale e direzione lavori
-              </p>
-            </div>
-
-            <div className="bg-boero/15 p-6 rounded-lg shadow-md text-center">
-              <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-accent-red">15+</span>
+                <span className="text-2xl font-bold text-accent-red">5+</span>
               </div>
               <h3 className="font-semibold text-xl mb-2">Operai Specializzati</h3>
               <p className="text-gray-600 text-sm">
@@ -262,6 +252,18 @@ export function About() {
                 Supporto completo dalla preventivazione alla documentazione
               </p>
             </div>
+
+            <div className="bg-boero/15 p-6 rounded-lg shadow-md text-center">
+              <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-accent-red">10+</span>
+              </div>
+              <h3 className="font-semibold text-xl mb-2">Artigiani qualificati</h3>
+              <p className="text-gray-600 text-sm">
+                Collaboratori qualificati con anni di esperienza
+              </p>
+            </div>
+
+
           </div>
         </div>
       </section>
