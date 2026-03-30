@@ -339,6 +339,12 @@ export function AdminCantiere() {
                           >
                             {doc.visibile ? <><Eye className="size-3" /> Visibile</> : <><EyeOff className="size-3" /> Nascosto</>}
                           </button>
+                            <button
+                             onClick={() => window.open(doc.url, '_blank')}
+                                className="text-gray-400 hover:text-accent-red transition-colors p-1"
+                            >
+                            <Eye className="size-4" />
+                            </button>
                           <button
                             onClick={() => eliminaDocumento(doc)}
                             className="text-gray-400 hover:text-red-500 transition-colors p-1"
