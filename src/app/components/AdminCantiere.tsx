@@ -151,41 +151,38 @@ export function AdminCantiere() {
   }
 
   async function invitaCliente(e: React.FormEvent) {
-    e.preventDefault()
-    setInviting(true)
+  e.preventDefault()
+  setInviting(true)
 
-    try {
-      // Invita utente tramite Supabase Auth Admin
-      const { data, error } = await supabase.auth.admin.inviteUserByEmail(emailInvito, {
-        data: {
-          nome: nomeInvito,
-          cognome: cognomeInvito,
-          azienda: aziendaInvito,
-          ruolo: 'cliente'
-        }
+  try {
+    const res = await fetch('/api/invite', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: emailInvito,
+        nome: nomeInvito,
+        cognome: cognomeInvito,
+        azienda: aziendaInvito,
+        cantiere_id: id
       })
+    })
 
-      if (error) throw error
-
-      // Assegna al cantiere
-      await supabase.from('cantieri_utenti').insert({
-        cantiere_id: id,
-        user_id: data.user.id,
-        ruolo_cantiere: 'cliente'
-      })
-
-      setShowInvita(false)
-      setEmailInvito('')
-      setNomeInvito('')
-      setCognomeInvito('')
-      setAziendaInvito('')
-      fetchAll()
-    } catch (err: any) {
-      console.error(err)
-      alert('Errore durante l\'invito: ' + err.message)
+    if (!res.ok) {
+      const data = await res.json()
+      throw new Error(data.error)
     }
-    setInviting(false)
+
+    setShowInvita(false)
+    setEmailInvito('')
+    setNomeInvito('')
+    setCognomeInvito('')
+    setAziendaInvito('')
+    fetchAll()
+  } catch (err: any) {
+    alert('Errore: ' + err.message)
   }
+  setInviting(false)
+}
 
   async function rimuoviCliente(clienteId: string) {
     if (!confirm('Rimuovere questo cliente dal cantiere?')) return
@@ -413,7 +410,7 @@ export function AdminCantiere() {
                           type="text"
                           required
                           value={cognomeInvito}
-                          onChange={e => setNomeInvito(e.target.value)}
+                          onChange={e => setCognomeInvito(e.target.value)}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-red focus:border-transparent font-logo"
                         />
                       </div>
