@@ -10,6 +10,7 @@ export function SetPassword() {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const [success, setSuccess] = useState(false)
+  const [sessionReady, setSessionReady] = useState(false)
 
 
 
@@ -26,6 +27,8 @@ export function SetPassword() {
   }
 }, [])
 
+
+
 useEffect(() => {
   const hash = window.location.hash
   
@@ -34,7 +37,6 @@ useEffect(() => {
     return
   }
 
-  // Estrai i parametri dall'hash e scambia il token con una sessione
   const params = new URLSearchParams(hash.substring(1))
   const accessToken = params.get('access_token')
   const refreshToken = params.get('refresh_token')
@@ -42,7 +44,13 @@ useEffect(() => {
   if (accessToken && refreshToken) {
     supabase.auth.setSession({
       access_token: accessToken,
-      refresh_token: refreshToken
+      refresh_token: refreshToken ?? ''
+    }).then(({ error }) => {
+      if (error) {
+        setError('Sessione non valida, richiedi un nuovo invito')
+      } else {
+        setSessionReady(true)
+      }
     })
   }
 }, [])
@@ -135,10 +143,10 @@ useEffect(() => {
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || !sessionReady}
             className="w-full bg-accent-red hover:bg-stone-800 disabled:opacity-60 text-white py-3 rounded-lg transition-colors font-logo"
           >
-            {loading ? 'Salvataggio...' : 'Imposta Password'}
+            {!sessionReady ? 'Preparazzione...' : loading ? 'Salvataggio...' : 'Imposta Password'}
           </button>
         </form>
 
