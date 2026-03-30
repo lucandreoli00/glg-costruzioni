@@ -5,17 +5,9 @@ import { supabase } from "@/lib/supabase.ts";
 
 export default function App() {
   useEffect(() => {
-  supabase.auth.onAuthStateChange((event, session) => {
+  supabase.auth.onAuthStateChange((event) => {
     if (event === 'PASSWORD_RECOVERY') {
       window.location.href = '/set-password'
-    }
-    if (event === 'SIGNED_IN' && session?.user) {
-      const passwordSet = session.user.user_metadata?.password_set
-      const isInvite = window.location.hash.includes('type=invite')
-      
-      if (isInvite && !passwordSet) {
-        window.location.href = '/set-password'
-      }
     }
   })
 }, [])

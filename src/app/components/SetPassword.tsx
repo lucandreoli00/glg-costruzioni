@@ -11,6 +11,19 @@ export function SetPassword() {
   const navigate = useNavigate()
   const [success, setSuccess] = useState(false)
 
+  useEffect(() => {
+  // controlla se siamo arrivati da un invito
+  const hash = window.location.hash
+  if (hash.includes('type=invite') || hash.includes('type=recovery')) {
+    // siamo nel posto giusto, non fare nulla
+    return
+  }
+  // se non c'è token nell'URL, reindirizza al login
+  if (!hash.includes('access_token')) {
+    navigate('/login')
+  }
+}, [])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
