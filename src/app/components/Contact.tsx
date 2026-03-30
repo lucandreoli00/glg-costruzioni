@@ -2,32 +2,37 @@ import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import { useState } from "react";
 
 export function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: ""
-  });
+ const [formData, setFormData] = useState({
+  name: "",
+  email: "",
+  phone: "",
+  subject: "",
+  message: "",
+});
 
-  const [submitted, setSubmitted] = useState(false);
+const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // In a real application, this would send the form data to a server
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: ""
-      });
-    }, 3000);
-  };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setStatus("loading");
+
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    if (!res.ok) throw new Error("Errore server");
+
+    setStatus("success");
+    setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    setTimeout(() => setStatus("idle"), 5000);
+  } catch {
+    setStatus("error");
+    setTimeout(() => setStatus("idle"), 5000);
+  }
+};
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -130,9 +135,15 @@ export function Contact() {
               <div className="bg-boero/15 rounded-lg shadow-md p-8">
                 <h2 className="text-2xl mb-6">Invia una Richiesta</h2>
                 
-                {submitted && (
+                {status === "success" && (
                   <div className="mb-6 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded">
-                    Grazie per averci contattato! Ti risponderemo al più presto.
+                    Grazie! La tua richiesta è stata inviata. Ti risponderemo al più presto.
+                  </div>
+                )}
+
+                {status === "error" && (
+                  <div className="mb-6 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded">
+                    Si è verificato un errore. Riprova o contattaci direttamente per email.
                   </div>
                 )}
 
@@ -225,10 +236,11 @@ export function Contact() {
 
                   <button
                     type="submit"
-                    className="bg-accent-red hover:bg-stone-800 text-white px-8 py-3 rounded-lg transition-colors inline-flex items-center gap-2"
+                    disabled={status === "loading"}
+                    className="bg-accent-red hover:bg-stone-800 disabled:opacity-60 disabled:cursor-not-allowed text-white px-8 py-3 rounded-lg transition-colors inline-flex items-center gap-2"
                   >
                     <Send className="size-5" />
-                    Invia Messaggio
+                    {status === "loading" ? "Invio in corso..." : "Invia Messaggio"}
                   </button>
 
                   <p className="text-sm text-gray-500">
