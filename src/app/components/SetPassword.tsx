@@ -15,44 +15,21 @@ export function SetPassword() {
 
 
   useEffect(() => {
-  // controlla se siamo arrivati da un invito
-  const hash = window.location.hash
-  if (hash.includes('type=invite') || hash.includes('type=recovery')) {
-    // siamo nel posto giusto, non fare nulla
-    return
-  }
-  // se non c'è token nell'URL, reindirizza al login
-  if (!hash.includes('access_token')) {
-    navigate('/login')
-  }
-}, [])
-
-
-
-useEffect(() => {
-  const hash = window.location.hash
-  
-  if (!hash.includes('access_token')) {
-    navigate('/login')
-    return
-  }
-
-  const params = new URLSearchParams(hash.substring(1))
-  const accessToken = params.get('access_token')
-  const refreshToken = params.get('refresh_token')
-
-  if (accessToken && refreshToken) {
-    supabase.auth.setSession({
-      access_token: accessToken,
-      refresh_token: refreshToken ?? ''
-    }).then(({ error }) => {
-      if (error) {
-        setError('Sessione non valida, richiedi un nuovo invito')
-      } else {
-        setSessionReady(true)
-      }
-    })
-  }
+  // Supabase gestisce automaticamente il token dall'URL
+  // dobbiamo solo aspettare che la sessione sia pronta
+  supabase.auth.getSession().then(({ data: { session } }) => {
+    if (session) {
+      setSessionReady(true)
+    } else {
+      // aspetta l'evento di auth
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+        if (event === 'SIGNED_IN' && session) {
+          setSessionReady(true)
+          subscription.unsubscribe()
+        }
+      })
+    }
+  })
 }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -146,7 +123,7 @@ useEffect(() => {
             disabled={loading || !sessionReady}
             className="w-full bg-accent-red hover:bg-stone-800 disabled:opacity-60 text-white py-3 rounded-lg transition-colors font-logo"
           >
-            {!sessionReady ? 'Preparazzione...' : loading ? 'Salvataggio...' : 'Imposta Password'}
+            {!sessionReady ? 'Preparazione...' : loading ? 'Salvataggio...' : 'Imposta Password'}
           </button>
         </form>
 
