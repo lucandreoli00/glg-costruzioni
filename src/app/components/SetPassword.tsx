@@ -8,8 +8,30 @@ export function SetPassword() {
   const [conferma, setConferma] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
   const [success, setSuccess] = useState(false)
+  const [sessionReady, setSessionReady] = useState(false)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    let attempts = 0
+    const maxAttempts = 10
+
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session) {
+        setSessionReady(true)
+        return
+      }
+      attempts++
+      if (attempts < maxAttempts) {
+        setTimeout(checkSession, 500)
+      } else {
+        navigate('/login')
+      }
+    }
+
+    checkSession()
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -19,7 +41,6 @@ export function SetPassword() {
       setError('Le password non coincidono')
       return
     }
-
     if (password.length < 8) {
       setError('La password deve essere di almeno 8 caratteri')
       return
@@ -27,9 +48,10 @@ export function SetPassword() {
 
     setLoading(true)
     try {
-      const { error } = await supabase.auth.updateUser({ password,
-        data: {password_set: true}
-       })
+      const { error } = await supabase.auth.updateUser({
+        password,
+        data: { password_set: true }
+      })
       if (error) throw error
       setSuccess(true)
       setTimeout(() => navigate('/login'), 2000)
@@ -43,11 +65,9 @@ export function SetPassword() {
   return (
     <div className="min-h-screen bg-boero/15 flex items-center justify-center px-4">
       <div className="bg-white rounded-lg shadow-md p-8 w-full max-w-md">
-
         <div className="flex justify-center mb-8">
           <img src={logo} alt="GLG Costruzioni" className="h-16 w-auto" />
         </div>
-
         <h1 className="font-logo text-2xl text-center text-stone-700 mb-2">
           Imposta Password
         </h1>
@@ -60,14 +80,11 @@ export function SetPassword() {
             {error}
           </div>
         )}
-
         {success && (
-            <div className='mb-6 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded text-sm'>
-                Password impostata correttamente! Reindirizzamento al login...
-            </div>
-        )
-
-        }
+          <div className="mb-6 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded text-sm">
+            Password impostata correttamente! Reindirizzamento al login...
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
@@ -82,7 +99,6 @@ export function SetPassword() {
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-red focus:border-transparent"
             />
           </div>
-
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Conferma Password
@@ -95,16 +111,14 @@ export function SetPassword() {
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-red focus:border-transparent"
             />
           </div>
-
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || !sessionReady}
             className="w-full bg-accent-red hover:bg-stone-800 disabled:opacity-60 text-white py-3 rounded-lg transition-colors font-logo"
           >
-            {loading ? 'Salvataggio...' : 'Imposta Password'}
+            {!sessionReady ? 'Preparazione...' : loading ? 'Salvataggio...' : 'Imposta Password'}
           </button>
         </form>
-
       </div>
     </div>
   )
