@@ -231,13 +231,20 @@ export function Admin() {
                       {cantiere.stato}
                     </span>
                     <button
-                      onClick={() => setEditingCantiere(cantiere)}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setEditingCantiere(cantiere)
+                      }}
+                      
                       className="text-gray-400 hover:text-accent-red transition-colors p-1"
                     >
                       <Pencil className="size-4" />
                     </button>
                     <button
-                      onClick={() => eliminaCantiere(cantiere)}
+                      onClick={(e) => {
+                        e.stopPropagation
+                        eliminaCantiere(cantiere)
+                      }}
                       className="text-gray-400 hover:text-red-500 transition-colors p-1"
                     >
                       <Trash2 className="size-4" />

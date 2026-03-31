@@ -18,17 +18,38 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const { data, error } = await supabase.auth.admin.inviteUserByEmail(email, {
-      data: { nome, cognome, azienda, ruolo: 'cliente' }
-    })
+    // controlla se l'utente esiste già
+    const { data: utentiEsistenti } = await supabase
+      .from('profiles')
+      .select('id')
+      .eq('id', (
+        await supabase.auth.admin.listUsers()
+      ).data.users.find(u => u.email === email)?.id ?? '')
+      .single()
 
-    if (error) throw error
+    let userId: string
 
-    await supabase.from('cantieri_utenti').insert({
+    if (utentiEsistenti) {
+      // utente esiste — prendi solo l'id
+      const { data: { users } } = await supabase.auth.admin.listUsers()
+      const existing = users.find(u => u.email === email)
+      if (!existing) throw new Error('Utente non trovato')
+      userId = existing.id
+    } else {
+      // utente non esiste — invia invito
+      const { data, error } = await supabase.auth.admin.inviteUserByEmail(email, {
+        data: { nome, cognome, azienda, ruolo: 'cliente' }
+      })
+      if (error) throw error
+      userId = data.user.id
+    }
+
+    // assegna al cantiere (ignora se già assegnato)
+    await supabase.from('cantieri_utenti').upsert({
       cantiere_id,
-      user_id: data.user.id,
+      user_id: userId,
       ruolo_cantiere: 'cliente'
-    })
+    }, { onConflict: 'cantiere_id,user_id' })
 
     return res.status(200).json({ success: true })
   } catch (error: any) {
