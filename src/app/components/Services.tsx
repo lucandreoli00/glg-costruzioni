@@ -3,6 +3,7 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import nuoveCostruzioni from "@/assets/NuoveCostruzioni.webp"
 import ristrutturazioni from "@/assets/P6/2.webp"
 import impermeabilizzazioni from "@/assets/impermeabilizzazioni.webp"
+import { SEO } from "./SEO";
 
 export function Services() {
   const services = [
@@ -90,6 +91,12 @@ export function Services() {
 
   return (
     <div className="font-logo">
+      <SEO
+            title="Servizi"
+            description="Servizi costruzioni residenziali, commerciali, ristrutturazioni e impermeabilizzazioni.  GLG Costruzioni opera in tutta la Lombardia."
+            url="/"
+      />
+
       {/* Hero Section */}
       <section className="bg-boero/15 text-stone-700 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

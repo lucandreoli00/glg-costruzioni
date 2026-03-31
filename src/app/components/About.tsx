@@ -2,6 +2,7 @@ import { Target, Eye, Award, Users } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import capannone from "@/assets/FotoCellCapannone.jpeg"
 import { ProjectSwiper1 } from "./ProjectSwiper";
+import { SEO } from "./SEO";
 
 const imagesP1 = import.meta.glob('@/assets/P1/*.{jpg,JPG, jpeg, png,webp}', { eager: true })
 const projectImages1 = Object.values(imagesP1).map((mod) => (mod as {default: string }).default)
@@ -59,6 +60,12 @@ const progetti = [
 export function About() {
   return (
     <div>
+      <SEO
+            title="Chi Siamo"
+            description="Scopri il team di GLG Costruzioni, guarda i nostri progetti"
+            url="/"
+      />
+
       {/* Hero Section */}
       <section className="relative h-[400px] flex items-center justify-center">
         <div className="absolute inset-0 overflow-hidden">

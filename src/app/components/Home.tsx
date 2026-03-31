@@ -7,6 +7,7 @@ import { ProjectSwiper } from "./ProjectSwiper";
 import nuoveCostruzioni from "@/assets/NuoveCostruzioni.webp"
 import ristrutturazioni from "@/assets/P6/2.webp"
 import impermeabilizzazioni from "@/assets/impermeabilizzazioni.webp"
+import { SEO } from './SEO'
 
 const imagesP1 = import.meta.glob('@/assets/P1/*.{jpg,JPG, jpeg, png,webp}', { eager: true })
 const projectImages1 = Object.values(imagesP1).map((mod) => (mod as {default: string }).default)
@@ -31,7 +32,14 @@ const projectImages6 = Object.values(imagesP6).map((mod) => (mod as {default: st
 
 export function Home() {
   return (
+          
+    
     <div className="font-logo">
+      <SEO
+      title="Home"
+      description="GLG Costruzioni - Impresa edile a Concorezzo. Costruzioni residenziali, commerciali, ristrutturazioni e impermeabilizzazioni in tutta la Lombardia."
+      url="/"
+      />
       {/* Hero Section */}
       <section className="relative h-[650px] flex items-center justify-center ">
         <div className="absolute inset-0 overflow-hidden">

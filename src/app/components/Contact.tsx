@@ -1,5 +1,6 @@
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import { useState } from "react";
+import { SEO } from "./SEO";
 
 export function Contact() {
  const [formData, setFormData] = useState({
@@ -43,6 +44,11 @@ const handleSubmit = async (e: React.FormEvent) => {
 
   return (
     <div className="font-logo">
+      <SEO
+            title="Contatti"
+            description="Contatta GLG Costruzioni per un preventivo gratuito. Sede a Concorezzo, serviamo in tutta la Lombardia."
+            url="/"
+      />
       {/* Hero Section */}
       <section className="bg-boero/15 text-stone-700 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
