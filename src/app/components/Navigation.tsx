@@ -28,7 +28,7 @@ export function Navigation() {
 
   return (
     <nav className="bg-boero/15 shadow-sm sticky top-0 z-50">
-      <div className="font-logo max-w-7xl mx-auto px-4 sm:px-4 lg:px-4">
+      <div className="font-logo max-w-screen-2xl mx-auto px-4 sm:px-4 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center">
@@ -36,7 +36,7 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-8">
+          <div className="hidden md:flex gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
