@@ -4,6 +4,7 @@ import { supabase } from '@/lib/supabase.ts'
 import { useAuth } from '@/context/AuthContext.tsx'
 import { FolderOpen, LogOut } from 'lucide-react'
 import logo from '@/assets/glgLogo.svg'
+import { Link }  from 'react-router'
 
 interface Cantiere {
   id: string
@@ -59,6 +60,12 @@ export function Portale() {
               <LogOut className="size-4" />
               Esci
             </button>
+            <Link
+              to="/cambia-password"
+              className="font-logo text-sm text-gray-500 hover:text-accent-red transition-colors"
+            >
+              Cambia Password
+            </Link>
           </div>
         </div>
       </header>

@@ -97,6 +97,14 @@ export function Login() {
           >
             {loading ? 'Accesso in corso...' : 'Accedi'}
           </button>
+          <div className="text-center mt-4">
+            <Link
+              to="/reset-password"
+              className="font-logo text-sm text-gray-400 hover:text-accent-red transition-colors"
+            >
+              Password dimenticata?
+            </Link>
+          </div>
         </form>
 
         <p className='font-logo text-center text-sm text-gray-400 mt-6'>

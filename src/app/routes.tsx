@@ -10,6 +10,10 @@ import { Portale } from "./components/Portale";
 import { PortaleDettaglio } from "./components/PortaleDettaglio";
 import { Admin } from "./components/Admin";
 import { AdminCantiere } from "./components/AdminCantiere";
+import { CambiaPassword } from "./components/CambiaPassword";
+import { ResetPassword } from "./components/ResetPassword";
+
+
 
 export const router = createBrowserRouter([
   {
@@ -48,4 +52,10 @@ export const router = createBrowserRouter([
     path: "admin/cantiere/:id",
     Component: AdminCantiere,
   },
+  { 
+    path: "/cambia-password", Component: CambiaPassword
+   },
+  {
+   path: "/reset-password", Component: ResetPassword
+   },
 ]);

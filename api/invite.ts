@@ -18,33 +18,36 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    // controlla se l'utente esiste già
-    const { data: utentiEsistenti } = await supabase
-      .from('profiles')
-      .select('id')
-      .eq('id', (
-        await supabase.auth.admin.listUsers()
-      ).data.users.find(u => u.email === email)?.id ?? '')
-      .single()
+    const { data: { users } } = await supabase.auth.admin.listUsers()
+    const existing = users.find(u => u.email === email)
 
     let userId: string
 
-    if (utentiEsistenti) {
-      // utente esiste — prendi solo l'id
-      const { data: { users } } = await supabase.auth.admin.listUsers()
-      const existing = users.find(u => u.email === email)
-      if (!existing) throw new Error('Utente non trovato')
+    if (existing) {
       userId = existing.id
     } else {
-      // utente non esiste — invia invito
-      const { data, error } = await supabase.auth.admin.inviteUserByEmail(email, {
-        data: { nome, cognome, azienda, ruolo: 'cliente' }
+      // invito via email Supabase + password temporanea = email
+      const { data, error } = await supabase.auth.admin.createUser({
+        email,
+        password: email,
+        email_confirm: true,
+        user_metadata: {
+          nome,
+          cognome,
+          azienda,
+          ruolo: 'cliente',
+          password_set: false
+        }
       })
       if (error) throw error
       userId = data.user.id
+
+      // manda email di invito con Supabase
+      await supabase.auth.admin.inviteUserByEmail(email, {
+        data: { nome, cognome, azienda, ruolo: 'cliente' }
+      })
     }
 
-    // assegna al cantiere (ignora se già assegnato)
     await supabase.from('cantieri_utenti').upsert({
       cantiere_id,
       user_id: userId,
