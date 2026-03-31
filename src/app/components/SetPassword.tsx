@@ -10,17 +10,6 @@ export function SetPassword() {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const [success, setSuccess] = useState(false)
-  const [sessionReady, setSessionReady] = useState(false)
-
-useEffect(() => {
-  supabase.auth.getSession().then(({ data: { session } }) => {
-    if (session) {
-      setSessionReady(true)
-    } else {
-      navigate('/login')
-    }
-  })
-}, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -42,7 +31,6 @@ useEffect(() => {
         data: {password_set: true}
        })
       if (error) throw error
-      navigate('/login')
       setSuccess(true)
       setTimeout(() => navigate('/login'), 2000)
     } catch (err: any) {
