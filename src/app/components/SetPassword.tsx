@@ -98,10 +98,10 @@ export function SetPassword() {
 
           <button
             type="submit"
-            disabled={loading || !sessionReady}
+            disabled={loading}
             className="w-full bg-accent-red hover:bg-stone-800 disabled:opacity-60 text-white py-3 rounded-lg transition-colors font-logo"
           >
-            {!sessionReady ? 'Preparazione...' : loading ? 'Salvataggio...' : 'Imposta Password'}
+            {loading ? 'Salvataggio...' : 'Imposta Password'}
           </button>
         </form>
 
