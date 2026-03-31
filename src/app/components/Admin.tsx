@@ -197,6 +197,69 @@ export function Admin() {
             </div>
           </form>
         )}
+        {editingCantiere && (
+          <form onSubmit={aggiornaCantiere} className="bg-white rounded-lg shadow-sm p-6 mb-8 border-l-4 border-accent-red">
+            <h2 className="font-logo text-lg text-stone-700 mb-4">Modifica Cantiere</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Nome *</label>
+                <input
+                  type="text"
+                  required
+                  value={editingCantiere.nome}
+                  onChange={e => setEditingCantiere({ ...editingCantiere, nome: e.target.value })}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-red focus:border-transparent font-logo"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Indirizzo</label>
+                <input
+                  type="text"
+                  value={editingCantiere.indirizzo}
+                  onChange={e => setEditingCantiere({ ...editingCantiere, indirizzo: e.target.value })}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-red focus:border-transparent font-logo"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Stato</label>
+                <select
+                  value={editingCantiere.stato}
+                  onChange={e => setEditingCantiere({ ...editingCantiere, stato: e.target.value })}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-red focus:border-transparent font-logo"
+                >
+                  <option value="attivo">Attivo</option>
+                  <option value="completato">Completato</option>
+                  <option value="sospeso">Sospeso</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Data Inizio</label>
+                <input
+                  type="date"
+                  value={editingCantiere.data_inizio}
+                  onChange={e => setEditingCantiere({ ...editingCantiere, data_inizio: e.target.value })}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-red focus:border-transparent font-logo"
+                />
+              </div>
+            </div>
+            <div className="flex gap-3 mt-4">
+              <button
+                type="submit"
+                disabled={saving}
+                className="font-logo bg-accent-red hover:bg-stone-800 disabled:opacity-60 text-white px-6 py-2 rounded-lg transition-colors text-sm"
+              >
+                {saving ? 'Salvataggio...' : 'Salva Modifiche'}
+              </button>
+              <button
+                type="button"
+                onClick={() => setEditingCantiere(null)}
+                className="font-logo text-gray-500 hover:text-stone-800 px-6 py-2 rounded-lg border border-gray-300 transition-colors text-sm"
+              >
+                Annulla
+              </button>
+            </div>
+          </form>
+        )}
 
         {/* Lista cantieri */}
         {loading ? (
@@ -233,6 +296,7 @@ export function Admin() {
                     <button
                       onClick={(e) => {
                         e.stopPropagation()
+                        console.log('click modifica ', cantiere)
                         setEditingCantiere(cantiere)
                       }}
                       
