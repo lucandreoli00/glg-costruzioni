@@ -13,24 +13,26 @@ export function SetPassword() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    let attempts = 0
-    const maxAttempts = 10
+    // Check for existing session immediately
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) setSessionReady(true)
+    })
 
-    const checkSession = async () => {
+    // Listen for auth state changes (handles invite/recovery token processing)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session) setSessionReady(true)
+    })
+
+    // Fallback: redirect to login if still no session after 10 seconds
+    const timeout = setTimeout(async () => {
       const { data: { session } } = await supabase.auth.getSession()
-      if (session) {
-        setSessionReady(true)
-        return
-      }
-      attempts++
-      if (attempts < maxAttempts) {
-        setTimeout(checkSession, 500)
-      } else {
-        navigate('/login')
-      }
-    }
+      if (!session) navigate('/login')
+    }, 10000)
 
-    checkSession()
+    return () => {
+      subscription.unsubscribe()
+      clearTimeout(timeout)
+    }
   }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
