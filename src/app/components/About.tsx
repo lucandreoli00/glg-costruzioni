@@ -93,17 +93,17 @@ export function About() {
               <h2 className="font-logo font-semibold text-3xl mb-6">La Nostra Storia</h2>
               <div className="space-y-4 font-logo text-gray-700">
                 <p>
-                  GLG Costruzioni nasce nel 2015 dalla passione e dall'esperienza del Geom. Roberto Andreoli. Da oltre 10 anni operiamo in tutta la Lombardia, realizzando progetti di 
-                  costruzione e ristrutturazione di alta qualità.
+                  GLG Costruzioni nasce nel 2015 da una visione chiara: realizzare costruzioni e ristrutturazioni dove la qualità non è un optional, ma il punto di partenza.
                 </p>
                 <p>
-                  La nostra azienda si è affermata nel territorio grazie alla professionalità, all'affidabilità 
-                  e all'attenzione ai dettagli. Crediamo fermamente che ogni progetto sia unico e meriti la massima 
-                  cura in ogni fase, dalla progettazione alla realizzazione finale.
+                  Da oltre 10 anni operiamo in tutta la Lombardia con rigore tecnico e grande attenzione al dettaglio: ogni lavorazione è eseguita con cura, ogni opera — anche la più tecnicamente complessa — affrontata con le competenze e gli strumenti giusti. Siamo un'azienda in continua evoluzione, che investe nella formazione e nell'adozione di nuove tecnologie per offrire soluzioni sempre più efficaci, efficienti e al passo con un settore in rapido cambiamento.
                 </p>
                 <p>
-                  Con sede a Concorezzo, serviamo clienti in tutta la regione Lombardia, offrendo soluzioni personalizzate 
-                  per abitazioni private, edifici commerciali e progetti di riqualificazione urbana.
+                  Crediamo che il vero valore di un'impresa edile si misuri nella qualità di ciò che rimane. Per questo seguiamo ogni cliente in modo diretto e personale, dalla prima consulenza fino alla consegna del lavoro finito, senza intermediari e senza compromessi.
+                </p>
+                <p>
+                  Con sede a Concorezzo, serviamo privati, committenti commerciali e amministrazioni in tutta la regione Lombardia, offrendo soluzioni su misura per chi non si accontenta dello standard.
+
                 </p>
               </div>
             </div>
