@@ -75,7 +75,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
               </tr>
             </table>
             <p>Al primo accesso verrà chiesto di impostare una nuova password.</p>
-            <a href="${SITE_URL}/login" style="display:inline-block;padding:12px 24px;background:#1a1a1a;color:#fff;text-decoration:none;border-radius:6px;margin:8px 0">
+            <a href="${SITE_URL}/set-password" style="display:inline-block;padding:12px 24px;background:#1a1a1a;color:#fff;text-decoration:none;border-radius:6px;margin:8px 0">
               Accedi al Portale
             </a>
             <p style="color:#666;font-size:13px;margin-top:32px">
