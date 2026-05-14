@@ -20,6 +20,7 @@ interface Documento {
   url: string
   visibile: boolean
   created_at: string
+  caricato_da: string
 }
 
 interface Cliente {
@@ -314,12 +315,21 @@ export function AdminCantiere() {
                   </div>
                 ) : (
                   <div className="bg-white rounded-lg shadow-sm divide-y divide-gray-100">
-                    {documenti.map(doc => (
+                    {documenti.map(doc => {
+                      const daCliente = clienti.some(c => c.id === doc.caricato_da)
+                      return (
                       <div key={doc.id} className="flex items-center justify-between p-4">
                         <div className="flex items-center gap-3">
                           {getIcona(doc.tipo)}
                           <div>
-                            <p className="font-logo text-sm font-medium text-stone-700">{doc.nome}</p>
+                            <div className="flex items-center gap-2">
+                              <p className="font-logo text-sm font-medium text-stone-700">{doc.nome}</p>
+                              {daCliente && (
+                                <span className="font-logo text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
+                                  cliente
+                                </span>
+                              )}
+                            </div>
                             <p className="font-logo text-xs text-gray-400">
                               {new Date(doc.created_at).toLocaleDateString('it-IT')} · {doc.tipo.toUpperCase()}
                             </p>
@@ -350,7 +360,7 @@ export function AdminCantiere() {
                           </button>
                         </div>
                       </div>
-                    ))}
+                    )})}
                   </div>
                 )}
               </div>
