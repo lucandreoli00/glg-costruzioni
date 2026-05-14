@@ -336,16 +336,18 @@ export function AdminCantiere() {
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => toggleVisibilita(doc)}
-                            className={`font-logo text-xs px-3 py-1 rounded-full transition-colors inline-flex items-center gap-1 ${
-                              doc.visibile
-                                ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                                : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-                            }`}
-                          >
-                            {doc.visibile ? <><Eye className="size-3" /> Visibile</> : <><EyeOff className="size-3" /> Nascosto</>}
-                          </button>
+                          {!daCliente && (
+                            <button
+                              onClick={() => toggleVisibilita(doc)}
+                              className={`font-logo text-xs px-3 py-1 rounded-full transition-colors inline-flex items-center gap-1 ${
+                                doc.visibile
+                                  ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                                  : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                              }`}
+                            >
+                              {doc.visibile ? <><Eye className="size-3" /> Visibile</> : <><EyeOff className="size-3" /> Nascosto</>}
+                            </button>
+                          )}
                             <button
                              onClick={() => window.open(doc.url, '_blank')}
                                 className="text-gray-400 hover:text-accent-red transition-colors p-1"
