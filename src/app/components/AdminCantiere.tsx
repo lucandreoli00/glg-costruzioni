@@ -42,6 +42,9 @@ export function AdminCantiere() {
   const [loading, setLoading] = useState(true)
   const [uploading, setUploading] = useState(false)
   const [showInvita, setShowInvita] = useState(false)
+  const [modoInvito, setModoInvito] = useState<'esistente' | 'nuovo'>('esistente')
+  const [utentiEsistenti, setUtentiEsistenti] = useState<{id: string, nome: string, cognome: string, azienda: string | null}[]>([])
+  const [utenteSelezionato, setUtenteSelezionato] = useState('')
   const [emailInvito, setEmailInvito] = useState('')
   const [nomeInvito, setNomeInvito] = useState('')
   const [cognomeInvito, setCognomeInvito] = useState('')
@@ -191,6 +194,30 @@ export function AdminCantiere() {
       .delete()
       .eq('cantiere_id', id)
       .eq('user_id', clienteId)
+    fetchAll()
+  }
+
+  async function apriFormInvito() {
+    setShowInvita(true)
+    const { data } = await supabase
+      .from('profiles')
+      .select('id, nome, cognome, azienda')
+      .eq('ruolo', 'cliente')
+    const giàAssegnati = new Set(clienti.map(c => c.id))
+    setUtentiEsistenti((data || []).filter(u => !giàAssegnati.has(u.id)))
+  }
+
+  async function assegnaEsistente(e: React.FormEvent) {
+    e.preventDefault()
+    if (!utenteSelezionato) return
+    setInviting(true)
+    await supabase.from('cantieri_utenti').upsert(
+      { cantiere_id: id, user_id: utenteSelezionato, ruolo_cantiere: 'cliente' },
+      { onConflict: 'cantiere_id,user_id' }
+    )
+    setShowInvita(false)
+    setUtenteSelezionato('')
+    setInviting(false)
     fetchAll()
   }
 
@@ -374,76 +401,142 @@ export function AdminCantiere() {
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="font-logo text-lg text-stone-700">Clienti assegnati</h2>
                   <button
-                    onClick={() => setShowInvita(!showInvita)}
+                    onClick={() => showInvita ? setShowInvita(false) : apriFormInvito()}
                     className="font-logo bg-accent-red hover:bg-stone-800 text-white px-4 py-2 rounded-lg transition-colors inline-flex items-center gap-2 text-sm"
                   >
                     <UserPlus className="size-4" />
-                    Invita Cliente
+                    Aggiungi Cliente
                   </button>
                 </div>
 
                 {/* Form invito */}
                 {showInvita && (
-                  <form onSubmit={invitaCliente} className="bg-white rounded-lg shadow-sm p-6 mb-6">
-                    <h3 className="font-logo text-base text-stone-700 mb-4">Nuovo invito</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
-                        <input
-                          type="email"
-                          required
-                          value={emailInvito}
-                          onChange={e => setEmailInvito(e.target.value)}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-red focus:border-transparent font-logo"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Azienda</label>
-                        <input
-                          type="text"
-                          value={aziendaInvito}
-                          onChange={e => setAziendaInvito(e.target.value)}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-red focus:border-transparent font-logo"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Nome *</label>
-                        <input
-                          type="text"
-                          required
-                          value={nomeInvito}
-                          onChange={e => setNomeInvito(e.target.value)}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-red focus:border-transparent font-logo"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Cognome *</label>
-                        <input
-                          type="text"
-                          required
-                          value={cognomeInvito}
-                          onChange={e => setCognomeInvito(e.target.value)}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-red focus:border-transparent font-logo"
-                        />
-                      </div>
+                  <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    {/* Toggle modo */}
+                    <div className="flex gap-2 mb-5">
+                      {(['esistente', 'nuovo'] as const).map(modo => (
+                        <button
+                          key={modo}
+                          type="button"
+                          onClick={() => setModoInvito(modo)}
+                          className={`font-logo text-sm px-4 py-1.5 rounded-lg border transition-colors ${
+                            modoInvito === modo
+                              ? 'bg-accent-red text-white border-accent-red'
+                              : 'text-gray-600 border-gray-300 hover:border-accent-red'
+                          }`}
+                        >
+                          {modo === 'esistente' ? 'Utente esistente' : 'Nuovo cliente'}
+                        </button>
+                      ))}
                     </div>
-                    <div className="flex gap-3 mt-4">
-                      <button
-                        type="submit"
-                        disabled={inviting}
-                        className="font-logo bg-accent-red hover:bg-stone-800 disabled:opacity-60 text-white px-6 py-2 rounded-lg transition-colors text-sm"
-                      >
-                        {inviting ? 'Invio in corso...' : 'Invia Invito'}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setShowInvita(false)}
-                        className="font-logo text-gray-500 hover:text-stone-800 px-6 py-2 rounded-lg border border-gray-300 transition-colors text-sm"
-                      >
-                        Annulla
-                      </button>
-                    </div>
-                  </form>
+
+                    {/* Seleziona esistente */}
+                    {modoInvito === 'esistente' && (
+                      <form onSubmit={assegnaEsistente}>
+                        {utentiEsistenti.length === 0 ? (
+                          <p className="font-logo text-sm text-gray-400 py-2">
+                            Nessun utente disponibile da aggiungere.
+                          </p>
+                        ) : (
+                          <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Seleziona utente</label>
+                            <select
+                              required
+                              value={utenteSelezionato}
+                              onChange={e => setUtenteSelezionato(e.target.value)}
+                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-red focus:border-transparent font-logo"
+                            >
+                              <option value="">— Seleziona —</option>
+                              {utentiEsistenti.map(u => (
+                                <option key={u.id} value={u.id}>
+                                  {u.nome} {u.cognome}{u.azienda ? ` — ${u.azienda}` : ''}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        )}
+                        <div className="flex gap-3">
+                          <button
+                            type="submit"
+                            disabled={inviting || !utenteSelezionato}
+                            className="font-logo bg-accent-red hover:bg-stone-800 disabled:opacity-60 text-white px-6 py-2 rounded-lg transition-colors text-sm"
+                          >
+                            {inviting ? 'Salvataggio...' : 'Aggiungi al cantiere'}
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setShowInvita(false)}
+                            className="font-logo text-gray-500 hover:text-stone-800 px-6 py-2 rounded-lg border border-gray-300 transition-colors text-sm"
+                          >
+                            Annulla
+                          </button>
+                        </div>
+                      </form>
+                    )}
+
+                    {/* Nuovo cliente */}
+                    {modoInvito === 'nuovo' && (
+                      <form onSubmit={invitaCliente}>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                            <input
+                              type="email"
+                              required
+                              value={emailInvito}
+                              onChange={e => setEmailInvito(e.target.value)}
+                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-red focus:border-transparent font-logo"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Azienda</label>
+                            <input
+                              type="text"
+                              value={aziendaInvito}
+                              onChange={e => setAziendaInvito(e.target.value)}
+                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-red focus:border-transparent font-logo"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Nome *</label>
+                            <input
+                              type="text"
+                              required
+                              value={nomeInvito}
+                              onChange={e => setNomeInvito(e.target.value)}
+                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-red focus:border-transparent font-logo"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Cognome *</label>
+                            <input
+                              type="text"
+                              required
+                              value={cognomeInvito}
+                              onChange={e => setCognomeInvito(e.target.value)}
+                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-red focus:border-transparent font-logo"
+                            />
+                          </div>
+                        </div>
+                        <div className="flex gap-3 mt-4">
+                          <button
+                            type="submit"
+                            disabled={inviting}
+                            className="font-logo bg-accent-red hover:bg-stone-800 disabled:opacity-60 text-white px-6 py-2 rounded-lg transition-colors text-sm"
+                          >
+                            {inviting ? 'Invio in corso...' : 'Invia Invito'}
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setShowInvita(false)}
+                            className="font-logo text-gray-500 hover:text-stone-800 px-6 py-2 rounded-lg border border-gray-300 transition-colors text-sm"
+                          >
+                            Annulla
+                          </button>
+                        </div>
+                      </form>
+                    )}
+                  </div>
                 )}
 
                 {/* Lista clienti */}
