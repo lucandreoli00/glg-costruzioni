@@ -55,7 +55,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     );
 
     if (isNew) {
-      await resend.emails.send({
+      const { error: emailError } = await resend.emails.send({
         from: "GLG Costruzioni <onboarding@resend.dev>",
         to: email,
         subject: "Accesso al Portale Clienti GLG Costruzioni",
@@ -84,6 +84,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           </div>
         `,
       });
+      if (emailError) throw new Error(emailError.message);
     }
 
     return res.status(200).json({ success: true });
