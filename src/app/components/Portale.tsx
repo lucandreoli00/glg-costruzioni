@@ -15,12 +15,13 @@ interface Cantiere {
 }
 
 export function Portale() {
-  const { user, profile, isAdmin } = useAuth()
+  const { user, profile, isAdmin, loading: authLoading } = useAuth()
   const [cantieri, setCantieri] = useState<Cantiere[]>([])
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
   useEffect(() => {
+    if (authLoading) return
     if (!user) {
       navigate('/login')
       return
@@ -30,7 +31,7 @@ export function Portale() {
       return
     }
     fetchCantieri()
-  }, [user, isAdmin])
+  }, [user, isAdmin, authLoading])
 
   async function fetchCantieri() {
     const { data, error } = await supabase

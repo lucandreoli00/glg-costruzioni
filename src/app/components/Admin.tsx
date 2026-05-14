@@ -22,7 +22,7 @@ interface NuovoCantiere {
 }
 
 export function Admin() {
-  const { user, profile, isAdmin } = useAuth()
+  const { user, profile, isAdmin, loading: authLoading } = useAuth()
   const navigate = useNavigate()
   const [cantieri, setCantieri] = useState<Cantiere[]>([])
   const [loading, setLoading] = useState(true)
@@ -34,10 +34,11 @@ export function Admin() {
   const [saving, setSaving] = useState(false)
 
   useEffect(() => {
+    if (authLoading) return
     if (!user) { navigate('/login'); return }
     if (!isAdmin) { navigate('/portale'); return }
     fetchCantieri()
-  }, [user, isAdmin])
+  }, [user, isAdmin, authLoading])
 
   
 

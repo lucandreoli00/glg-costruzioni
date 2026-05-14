@@ -33,7 +33,7 @@ interface Cliente {
 
 export function AdminCantiere() {
   const { id } = useParams()
-  const { user, profile, isAdmin } = useAuth()
+  const { user, profile, isAdmin, loading: authLoading } = useAuth()
   const navigate = useNavigate()
 
   const [cantiere, setCantiere] = useState<Cantiere | null>(null)
@@ -55,10 +55,11 @@ export function AdminCantiere() {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
+    if (authLoading) return
     if (!user) { navigate('/login'); return }
     if (!isAdmin) { navigate('/portale'); return }
     fetchAll()
-  }, [user, isAdmin, id])
+  }, [user, isAdmin, authLoading, id])
 
   async function fetchAll() {
     const [

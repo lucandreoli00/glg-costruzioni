@@ -25,7 +25,7 @@ interface Cantiere {
 
 export function PortaleDettaglio() {
   const { id } = useParams()
-  const { user, profile } = useAuth()
+  const { user, profile, loading: authLoading } = useAuth()
   const navigate = useNavigate()
   const [cantiere, setCantiere] = useState<Cantiere | null>(null)
   const [documenti, setDocumenti] = useState<Documento[]>([])
@@ -34,12 +34,13 @@ export function PortaleDettaglio() {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
+    if (authLoading) return
     if (!user) {
       navigate('/login')
       return
     }
     fetchData()
-  }, [user, id])
+  }, [user, authLoading, id])
 
   async function fetchData() {
     const [{ data: cantiere }, { data: docs }] = await Promise.all([
