@@ -55,6 +55,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     );
 
     if (isNew) {
+      // Genera link firmato con token — il click crea una sessione valida direttamente
+      const { data: linkData, error: linkError } = await supabase.auth.admin.generateLink({
+        type: "recovery",
+        email,
+        options: { redirectTo: `${SITE_URL}/set-password` },
+      });
+      if (linkError) throw linkError;
+
       const { error: emailError } = await resend.emails.send({
         from: "GLG Costruzioni <onboarding@resend.dev>",
         to: email,
@@ -64,22 +72,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             <h2 style="color:#1a1a1a">Benvenuto nel Portale Clienti GLG Costruzioni</h2>
             <p>Gentile ${nome} ${cognome},</p>
             <p>È stato creato un account per accedere al portale clienti dove potrà seguire l'avanzamento del suo cantiere.</p>
-            <table style="border-collapse:collapse;width:100%;margin:24px 0">
-              <tr style="background:#f5f5f5">
-                <td style="padding:10px 14px;font-weight:bold;width:140px">Email</td>
-                <td style="padding:10px 14px">${email}</td>
-              </tr>
-              <tr>
-                <td style="padding:10px 14px;font-weight:bold">Password temporanea</td>
-                <td style="padding:10px 14px">${email}</td>
-              </tr>
-            </table>
-            <p>Al primo accesso verrà chiesto di impostare una nuova password.</p>
-            <a href="${SITE_URL}/set-password" style="display:inline-block;padding:12px 24px;background:#1a1a1a;color:#fff;text-decoration:none;border-radius:6px;margin:8px 0">
-              Accedi al Portale
+            <p>Clicchi il pulsante qui sotto per impostare la sua password e accedere al portale.</p>
+            <a href="${linkData.properties.action_link}" style="display:inline-block;padding:12px 24px;background:#1a1a1a;color:#fff;text-decoration:none;border-radius:6px;margin:16px 0">
+              Imposta la tua password
             </a>
             <p style="color:#666;font-size:13px;margin-top:32px">
-              Per qualsiasi problema contatti GLG Costruzioni.
+              Il link è valido per 24 ore. Per qualsiasi problema contatti GLG Costruzioni.
             </p>
           </div>
         `,

@@ -56,7 +56,7 @@ export function SetPassword() {
       })
       if (error) throw error
       setSuccess(true)
-      setTimeout(() => navigate('/portale'), 2000)
+      setTimeout(() => navigate('/login'), 2000)
     } catch (err: any) {
       setError(err.message)
     } finally {
@@ -84,7 +84,7 @@ export function SetPassword() {
         )}
         {success && (
           <div className="mb-6 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded text-sm">
-            Password impostata correttamente! Accesso al portale in corso...
+            Password impostata correttamente! Reindirizzamento al login...
           </div>
         )}
 
