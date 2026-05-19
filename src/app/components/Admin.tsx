@@ -297,7 +297,6 @@ export function Admin() {
                     <button
                       onClick={(e) => {
                         e.stopPropagation()
-                        console.log('click modifica ', cantiere)
                         setEditingCantiere(cantiere)
                       }}
                       
@@ -307,7 +306,7 @@ export function Admin() {
                     </button>
                     <button
                       onClick={(e) => {
-                        e.stopPropagation
+                        e.stopPropagation()
                         eliminaCantiere(cantiere)
                       }}
                       className="text-gray-400 hover:text-red-500 transition-colors p-1"
