@@ -45,6 +45,11 @@ export function Footer() {
                   Contatti
                 </Link>
               </li>
+              <li>
+                <Link to="/privacy-policy" className="text-white hover:text-stone-400 transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
             </ul>
           </div>
 
