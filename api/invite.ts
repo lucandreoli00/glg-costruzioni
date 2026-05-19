@@ -11,6 +11,24 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 const SITE_URL = process.env.VITE_SITE_URL ?? "https://glg-costruzioni-git-alternativa-lucandreoli00s-projects.vercel.app";
 
+// Cerca un utente per email scorrendo tutte le pagine. listUsers pagina
+// a 50 di default: senza questo gli utenti oltre la prima pagina non
+// venivano trovati -> inviti duplicati/falliti con la crescita.
+async function findUserByEmail(email: string) {
+  const target = email.trim().toLowerCase();
+  const perPage = 1000;
+  for (let page = 1; page <= 100; page++) {
+    const { data, error } = await supabase.auth.admin.listUsers({ page, perPage });
+    if (error) throw error;
+    const found = data.users.find(
+      (u) => (u.email ?? "").toLowerCase() === target
+    );
+    if (found) return found;
+    if (data.users.length < perPage) break;
+  }
+  return null;
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -23,8 +41,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const { data: { users } } = await supabase.auth.admin.listUsers();
-    const existing = users.find(u => u.email === email);
+    const existing = await findUserByEmail(email);
 
     let userId: string;
     let isNew = false;
