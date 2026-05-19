@@ -22,6 +22,7 @@ interface Documento {
   visibile: boolean
   created_at: string
   caricato_da: string
+  eliminato_da_cliente?: boolean
 }
 
 interface Cliente {
@@ -351,6 +352,11 @@ export function AdminCantiere() {
                               {daCliente && (
                                 <span className="font-logo text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
                                   cliente
+                                </span>
+                              )}
+                              {doc.eliminato_da_cliente && (
+                                <span className="font-logo text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">
+                                  rimosso dal cliente
                                 </span>
                               )}
                             </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { supabase } from '@/lib/supabase.ts'
-import { openDocumento, docPath } from '@/lib/storage.ts'
+import { openDocumento, softDeleteDocumento } from '@/lib/storage.ts'
 import { useAuth } from '@/context/AuthContext.tsx'
 import { FileText, Download, ArrowLeft, LogOut, Image, File, Upload, Trash2 } from 'lucide-react'
 import logo from '@/assets/glgLogo.svg'
@@ -15,6 +15,7 @@ interface Documento {
   created_at: string
   caricato_da: string
   visibile: boolean
+  eliminato_da_cliente?: boolean
 }
 
 interface Cantiere {
@@ -49,6 +50,7 @@ export function PortaleDettaglio() {
       supabase.from('documenti')
         .select('*')
         .eq('cantiere_id', id)
+        .eq('eliminato_da_cliente', false)
         .or(`visibile.eq.true,caricato_da.eq.${user!.id}`)
         .order('created_at', { ascending: false })
     ])
@@ -103,11 +105,13 @@ export function PortaleDettaglio() {
   }
 
   async function eliminaDocumento(doc: Documento) {
-    if (!confirm(`Eliminare "${doc.nome}"?`)) return
-    const path = docPath(doc.url)
-    await supabase.storage.from('documenti').remove([path])
-    await supabase.from('documenti').delete().eq('id', doc.id)
-    fetchData()
+    if (!confirm(`Rimuovere "${doc.nome}"? Resterà visibile all'ufficio finché non verrà eliminato definitivamente.`)) return
+    try {
+      await softDeleteDocumento(doc.id)
+      fetchData()
+    } catch (e: any) {
+      alert(e.message)
+    }
   }
 
   function getIcona(tipo: string) {

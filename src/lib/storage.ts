@@ -34,3 +34,21 @@ export async function openDocumento(documentoId: string, azione?: string) {
     throw e
   }
 }
+
+// Soft-delete lato cliente: marca il documento come rimosso dal cliente
+// (resta visibile all'ufficio). Mutazione eseguita server-side col service-role.
+export async function softDeleteDocumento(documentoId: string) {
+  const { data: { session } } = await supabase.auth.getSession()
+  const res = await fetch('/api/document-soft-delete', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${session?.access_token ?? ''}`,
+    },
+    body: JSON.stringify({ documento_id: documentoId }),
+  })
+  if (!res.ok) {
+    const { error } = await res.json().catch(() => ({ error: 'Errore' }))
+    throw new Error(error || 'Impossibile rimuovere il documento')
+  }
+}
