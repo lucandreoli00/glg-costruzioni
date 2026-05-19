@@ -235,7 +235,7 @@ export function About() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-semibold mb-4">Il Nostro Team</h2>
             <p className="text-gray-600 text-lg">
-              Un team di oltre 30 professionisti qualificati
+              Un team di oltre 20 professionisti qualificati
             </p>
           </div>
 
