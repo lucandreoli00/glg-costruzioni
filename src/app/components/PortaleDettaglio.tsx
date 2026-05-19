@@ -257,12 +257,21 @@ export function PortaleDettaglio() {
                         </p>
                       </div>
                     </div>
-                    <button
-                      onClick={() => eliminaDocumento(doc)}
-                      className="text-gray-400 hover:text-red-500 transition-colors p-1"
-                    >
-                      <Trash2 className="size-4" />
-                    </button>
+                    <div className="flex items-center gap-3">
+                      <button
+                        onClick={() => handleDownload(doc)}
+                        className="font-logo text-sm text-accent-red hover:text-stone-800 transition-colors inline-flex items-center gap-1"
+                      >
+                        <Download className="size-4" />
+                        Scarica
+                      </button>
+                      <button
+                        onClick={() => eliminaDocumento(doc)}
+                        className="text-gray-400 hover:text-red-500 transition-colors p-1"
+                      >
+                        <Trash2 className="size-4" />
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
