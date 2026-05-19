@@ -64,7 +64,7 @@ export function Home() {
             className="font-logo  text-xl font-semibold md:text-2xl mb-8 text-white" 
             style={{filter: 'drop-shadow(0 0 1px #E30613) '}}
           >
-            Edilizia di qualità in Lombardia da oltre 20 anni
+            Edilizia di qualità in Lombardia da più di 10 anni
           </p>}
           
           <div 
@@ -222,7 +222,7 @@ export function Home() {
               </div>
               <h3 className="font-semibold font-logo text-stone-700 mb-2">Esperienza</h3>
               <p className="font-logo text-gray-600 text-sm">
-                Oltre 20 anni nel settore delle costruzioni
+                Oltre 10 anni nel settore delle costruzioni
               </p>
             </div>
 
