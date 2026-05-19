@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { supabase } from '@/lib/supabase.ts'
+import { openDocumento, docPath } from '@/lib/storage.ts'
 import { useAuth } from '@/context/AuthContext.tsx'
 import { ArrowLeft, LogOut, Upload, Trash2, Eye, EyeOff, Users, FileText, Image, File, UserPlus } from 'lucide-react'
 import logo from '@/assets/glgLogo.svg'
@@ -120,17 +121,12 @@ export function AdminCantiere() {
       return
     }
 
-    // Ottieni URL pubblico
-    const { data: { publicUrl } } = supabase.storage
-      .from('documenti')
-      .getPublicUrl(path)
-
-    // Salva in DB
+    // Salva in DB (salviamo il path, non l'URL pubblico)
     await supabase.from('documenti').insert({
       cantiere_id: id,
       nome: file.name,
       tipo,
-      url: publicUrl,
+      url: path,
       visibile: false,
       caricato_da: user!.id
     })
@@ -149,7 +145,7 @@ export function AdminCantiere() {
 
   async function eliminaDocumento(doc: Documento) {
     if (!confirm(`Eliminare "${doc.nome}"?`)) return
-    const path = doc.url.split('/documenti/')[1]
+    const path = docPath(doc.url)
     await supabase.storage.from('documenti').remove([path])
     await supabase.from('documenti').delete().eq('id', doc.id)
     fetchAll()
@@ -377,7 +373,7 @@ export function AdminCantiere() {
                             </button>
                           )}
                             <button
-                             onClick={() => window.open(doc.url, '_blank')}
+                             onClick={() => openDocumento(doc.id).catch((e: any) => alert(e.message))}
                                 className="text-gray-400 hover:text-accent-red transition-colors p-1"
                             >
                             <Eye className="size-4" />

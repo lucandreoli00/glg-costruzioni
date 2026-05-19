@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { supabase } from '@/lib/supabase.ts'
+import { openDocumento, docPath } from '@/lib/storage.ts'
 import { useAuth } from '@/context/AuthContext.tsx'
 import { FileText, Download, ArrowLeft, LogOut, Image, File, Upload, Trash2 } from 'lucide-react'
 import logo from '@/assets/glgLogo.svg'
@@ -58,12 +59,11 @@ export function PortaleDettaglio() {
   }
 
   async function handleDownload(doc: Documento) {
-    await supabase.from('log_accessi').insert({
-      user_id: user!.id,
-      documento_id: doc.id,
-      azione: 'scarica'
-    })
-    window.open(doc.url, '_blank')
+    try {
+      await openDocumento(doc.id, 'scarica')
+    } catch (e: any) {
+      alert(e.message)
+    }
   }
 
   async function uploadDocumento(e: React.ChangeEvent<HTMLInputElement>) {
@@ -88,13 +88,11 @@ export function PortaleDettaglio() {
       return
     }
 
-    const { data: { publicUrl } } = supabase.storage.from('documenti').getPublicUrl(path)
-
     await supabase.from('documenti').insert({
       cantiere_id: id,
       nome: file.name,
       tipo,
-      url: publicUrl,
+      url: path,
       visibile: true,
       caricato_da: user!.id
     })
@@ -106,7 +104,7 @@ export function PortaleDettaglio() {
 
   async function eliminaDocumento(doc: Documento) {
     if (!confirm(`Eliminare "${doc.nome}"?`)) return
-    const path = doc.url.split('/documenti/')[1]
+    const path = docPath(doc.url)
     await supabase.storage.from('documenti').remove([path])
     await supabase.from('documenti').delete().eq('id', doc.id)
     fetchData()
