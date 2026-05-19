@@ -5,7 +5,7 @@ import logo from "@/assets/glgLogo.svg";
 import capannone from "@/assets/FotoCellCapannone.jpeg"
 import { ProjectSwiper } from "./ProjectSwiper";
 import nuoveCostruzioni from "@/assets/NuoveCostruzioni.webp"
-import ristrutturazioni from "@/assets/P6/2.webp"
+import ristrutturazioni from "@/assets/P6/020.webp"
 import impermeabilizzazioni from "@/assets/impermeabilizzazioni.webp"
 import { SEO } from './SEO'
 
