@@ -44,12 +44,8 @@ export function PrivacyPolicy() {
             <ul className="list-disc pl-6 mt-2 space-y-1">
               <li>P. IVA / C.F.: [DA COMPLETARE]</li>
               <li>Email: info@glgcostruzioni.it</li>
-              <li>Email dedicata privacy: [DA COMPLETARE — es. privacy@glgcostruzioni.it]</li>
+              <li>Email dedicata privacy: segreteriatecnica@glgcostruzioni.it</li>
               <li>Telefono: +39 039 616229</li>
-              <li>
-                Responsabile della Protezione dei Dati (DPO):
-                [DA COMPLETARE se nominato, altrimenti indicare &ldquo;non nominato&rdquo;]
-              </li>
             </ul>
           </div>
 
@@ -99,12 +95,6 @@ export function PrivacyPolicy() {
               dati potrebbero essere utilizzati per l&rsquo;accertamento di
               responsabilità in caso di reati informatici ai danni del sito o di
               terzi.
-            </p>
-
-            <p className="mt-2 text-sm text-stone-500">
-              [DA VALIDARE LEGALMENTE: se il portale può contenere documenti con
-              categorie particolari di dati (art. 9 GDPR), va aggiunta apposita base
-              giuridica e informativa specifica.]
             </p>
           </div>
 
@@ -164,11 +154,7 @@ export function PrivacyPolicy() {
                 (cfr. sezione 9).
               </li>
             </ul>
-            <p className="mt-2 text-sm text-stone-500">
-              [DA COMPLETARE: indicare eventuale localizzazione dei server e le
-              garanzie per i trasferimenti extra-UE; verificare la nomina a
-              Responsabile ex art. 28 GDPR di ciascun fornitore.]
-            </p>
+            
           </div>
 
           <div>
@@ -176,19 +162,17 @@ export function PrivacyPolicy() {
             <ul className="list-disc pl-6 mt-2 space-y-1">
               <li>
                 Dati del modulo contatti: per il tempo necessario a evadere la
-                richiesta e per [DA COMPLETARE — es. 12/24 mesi] successivi.
+                richiesta e per 12 mesi successivi.
               </li>
               <li>
                 Dati del Portale Clienti: per la durata del rapporto contrattuale
                 e per i termini di legge successivi (es. obblighi fiscali, 10 anni).
               </li>
               <li>
-                Log tecnici e di accesso: [DA COMPLETARE — es. 6/12 mesi].
+                Log tecnici e di accesso: 12 mesi.
               </li>
             </ul>
-            <p className="mt-2 text-sm text-stone-500">
-              [DA VALIDARE LEGALMENTE: definire i tempi di conservazione precisi.]
-            </p>
+            
           </div>
 
           <div>
@@ -208,7 +192,7 @@ export function PrivacyPolicy() {
               L&rsquo;interessato può in qualsiasi momento esercitare i diritti
               previsti dagli artt. 15-22 GDPR: accesso, rettifica, cancellazione,
               limitazione, opposizione, portabilità e revoca del consenso (ove
-              applicabile), scrivendo a [DA COMPLETARE — email privacy].
+              applicabile), scrivendo a segreteriatecnica@glgcostruzioni.it
             </p>
             <p className="mt-2">
               L&rsquo;interessato ha inoltre il diritto di proporre reclamo al
@@ -266,13 +250,6 @@ export function PrivacyPolicy() {
               ← Torna ai Contatti
             </Link>
           </div>
-
-          <p className="text-xs text-stone-400">
-            Documento in bozza. I contenuti legali devono essere verificati e
-            validati da un professionista in materia di protezione dei dati prima
-            della pubblicazione.
-          </p>
-
         </div>
       </section>
     </div>
