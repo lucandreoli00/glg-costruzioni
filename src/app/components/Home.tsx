@@ -5,7 +5,7 @@ import logo from "@/assets/glgLogo.svg";
 import capannone from "@/assets/FotoCellCapannone.jpeg"
 import { ProjectSwiper } from "./ProjectSwiper";
 import nuoveCostruzioni from "@/assets/NuoveCostruzioni.webp"
-import ristrutturazioni from "@/assets/P6/2.webp"
+import ristrutturazioni from "@/assets/P6/020.webp"
 import impermeabilizzazioni from "@/assets/impermeabilizzazioni.webp"
 import { SEO } from './SEO'
 
@@ -64,7 +64,7 @@ export function Home() {
             className="font-logo  text-xl font-semibold md:text-2xl mb-8 text-white" 
             style={{filter: 'drop-shadow(0 0 1px #E30613) '}}
           >
-            Edilizia di qualità in Lombardia da oltre 20 anni
+            Edilizia di qualità in Lombardia da più di 10 anni
           </p>}
           
           <div 
@@ -222,7 +222,7 @@ export function Home() {
               </div>
               <h3 className="font-semibold font-logo text-stone-700 mb-2">Esperienza</h3>
               <p className="font-logo text-gray-600 text-sm">
-                Oltre 20 anni nel settore delle costruzioni
+                Oltre 10 anni nel settore delle costruzioni
               </p>
             </div>
 

@@ -29,9 +29,6 @@ export function Login() {
       .eq('id', data.user.id)
       .single()
 
-    console.log('profilo: ',profile)
-    console.log('ruolo: ', profile?.ruolo)
-
     if (profile?.ruolo === 'admin') navigate('/admin')
     else navigate('/portale')
 

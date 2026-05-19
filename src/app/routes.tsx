@@ -12,6 +12,7 @@ import { Admin } from "./components/Admin";
 import { AdminCantiere } from "./components/AdminCantiere";
 import { CambiaPassword } from "./components/CambiaPassword";
 import { ResetPassword } from "./components/ResetPassword";
+import { PrivacyPolicy } from "./components/PrivacyPolicy";
 
 
 
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
       { path: "chi-siamo", Component: About },
       { path: "servizi", Component: Services },
       { path: "contatti", Component: Contact },
+      { path: "privacy-policy", Component: PrivacyPolicy },
     ],
   },
   {

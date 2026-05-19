@@ -1,6 +1,7 @@
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import { useState } from "react";
 import { SEO } from "./SEO";
+import { Link } from "react-router";
 
 export function Contact() {
  const [formData, setFormData] = useState({
@@ -12,6 +13,8 @@ export function Contact() {
 });
 
 const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+const [mapLoaded, setMapLoaded] = useState(false);
+const [privacyAccepted, setPrivacyAccepted] = useState(false);
 
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
@@ -121,18 +124,39 @@ const handleSubmit = async (e: React.FormEvent) => {
                 </div>
               </div>
 
-              {/* Map placeholder */}
+              {/* Mappa — caricata solo previo clic esplicito dell'utente:
+                  nessun dato inviato a Google né cookie di terze parti finché
+                  l'utente non attiva la mappa (conformità privacy by design). */}
               <div className="mt-8 rounded-lg overflow-hidden shadow-md h-64 bg-gray-200">
-                <iframe
-                  title="Mappa sede Edilizia Lombarda"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2791.704463621332!2d9.338836335679085!3d45.59648551661273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786b9167d1632ed%3A0x1532b2eeec0f7a75!2sGlg%20Costruzioni%20S.R.L.!5e0!3m2!1sit!2sus!4v1774433732360!5m2!1sit!2sus" 
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
+                {mapLoaded ? (
+                  <iframe
+                    title="Mappa sede GLG Costruzioni"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2791.704463621332!2d9.338836335679085!3d45.59648551661273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786b9167d1632ed%3A0x1532b2eeec0f7a75!2sGlg%20Costruzioni%20S.R.L.!5e0!3m2!1sit!2sus!4v1774433732360!5m2!1sit!2sus"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setMapLoaded(true)}
+                    className="w-full h-full flex flex-col items-center justify-center gap-3 text-center px-6 hover:bg-gray-300 transition-colors cursor-pointer"
+                  >
+                    <MapPin className="size-10 text-accent-red" />
+                    <span className="font-semibold text-stone-700">
+                      Clicca per caricare la mappa
+                    </span>
+                    <span className="text-sm text-gray-600 max-w-xs">
+                      Caricando la mappa accetti il collegamento a Google Maps,
+                      che può impostare cookie di terze parti.
+                      <br />
+                      Via Oreno 25, 20863 Concorezzo (MB)
+                    </span>
+                  </button>
+                )}
               </div>
             </div>
 
@@ -240,9 +264,32 @@ const handleSubmit = async (e: React.FormEvent) => {
                     ></textarea>
                   </div>
 
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="privacy"
+                      name="privacy"
+                      checked={privacyAccepted}
+                      onChange={(e) => setPrivacyAccepted(e.target.checked)}
+                      required
+                      className="mt-1 size-4 accent-accent-red flex-shrink-0"
+                    />
+                    <label htmlFor="privacy" className="text-sm text-gray-600">
+                      Ho letto e accetto l&rsquo;{" "}
+                      <Link
+                        to="/privacy-policy"
+                        className="text-accent-red hover:text-stone-800 underline"
+                      >
+                        informativa sulla privacy
+                      </Link>{" "}
+                      e acconsento al trattamento dei miei dati per rispondere
+                      alla richiesta. *
+                    </label>
+                  </div>
+
                   <button
                     type="submit"
-                    disabled={status === "loading"}
+                    disabled={status === "loading" || !privacyAccepted}
                     className="bg-accent-red hover:bg-stone-800 disabled:opacity-60 disabled:cursor-not-allowed text-white px-8 py-3 rounded-lg transition-colors inline-flex items-center gap-2"
                   >
                     <Send className="size-5" />

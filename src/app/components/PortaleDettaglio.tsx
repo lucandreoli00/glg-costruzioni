@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { supabase } from '@/lib/supabase.ts'
+import { openDocumento, softDeleteDocumento } from '@/lib/storage.ts'
 import { useAuth } from '@/context/AuthContext.tsx'
 import { FileText, Download, ArrowLeft, LogOut, Image, File, Upload, Trash2 } from 'lucide-react'
 import logo from '@/assets/glgLogo.svg'
@@ -14,6 +15,7 @@ interface Documento {
   created_at: string
   caricato_da: string
   visibile: boolean
+  eliminato_da_cliente?: boolean
 }
 
 interface Cantiere {
@@ -48,6 +50,7 @@ export function PortaleDettaglio() {
       supabase.from('documenti')
         .select('*')
         .eq('cantiere_id', id)
+        .eq('eliminato_da_cliente', false)
         .or(`visibile.eq.true,caricato_da.eq.${user!.id}`)
         .order('created_at', { ascending: false })
     ])
@@ -58,12 +61,11 @@ export function PortaleDettaglio() {
   }
 
   async function handleDownload(doc: Documento) {
-    await supabase.from('log_accessi').insert({
-      user_id: user!.id,
-      documento_id: doc.id,
-      azione: 'scarica'
-    })
-    window.open(doc.url, '_blank')
+    try {
+      await openDocumento(doc.id, 'scarica')
+    } catch (e: any) {
+      alert(e.message)
+    }
   }
 
   async function uploadDocumento(e: React.ChangeEvent<HTMLInputElement>) {
@@ -88,13 +90,11 @@ export function PortaleDettaglio() {
       return
     }
 
-    const { data: { publicUrl } } = supabase.storage.from('documenti').getPublicUrl(path)
-
     await supabase.from('documenti').insert({
       cantiere_id: id,
       nome: file.name,
       tipo,
-      url: publicUrl,
+      url: path,
       visibile: true,
       caricato_da: user!.id
     })
@@ -105,11 +105,13 @@ export function PortaleDettaglio() {
   }
 
   async function eliminaDocumento(doc: Documento) {
-    if (!confirm(`Eliminare "${doc.nome}"?`)) return
-    const path = doc.url.split('/documenti/')[1]
-    await supabase.storage.from('documenti').remove([path])
-    await supabase.from('documenti').delete().eq('id', doc.id)
-    fetchData()
+    if (!confirm(`Rimuovere "${doc.nome}"? Resterà visibile all'ufficio finché non verrà eliminato definitivamente.`)) return
+    try {
+      await softDeleteDocumento(doc.id)
+      fetchData()
+    } catch (e: any) {
+      alert(e.message)
+    }
   }
 
   function getIcona(tipo: string) {
@@ -259,12 +261,21 @@ export function PortaleDettaglio() {
                         </p>
                       </div>
                     </div>
-                    <button
-                      onClick={() => eliminaDocumento(doc)}
-                      className="text-gray-400 hover:text-red-500 transition-colors p-1"
-                    >
-                      <Trash2 className="size-4" />
-                    </button>
+                    <div className="flex items-center gap-3">
+                      <button
+                        onClick={() => handleDownload(doc)}
+                        className="font-logo text-sm text-accent-red hover:text-stone-800 transition-colors inline-flex items-center gap-1"
+                      >
+                        <Download className="size-4" />
+                        Scarica
+                      </button>
+                      <button
+                        onClick={() => eliminaDocumento(doc)}
+                        className="text-gray-400 hover:text-red-500 transition-colors p-1"
+                      >
+                        <Trash2 className="size-4" />
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
