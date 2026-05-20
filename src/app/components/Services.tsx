@@ -3,7 +3,7 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import nuoveCostruzioni from "@/assets/NuoveCostruzioni.webp"
 import ristrutturazioni from "@/assets/P6/020.webp"
 import impermeabilizzazioni from "@/assets/impermeabilizzazioni.webp"
-import opereMurarie from "@/assets/Cinta/Cinta 040.webp"
+import opereMurarie from "@/assets/Cinta/Cinta 020.webp"
 import { SEO } from "./SEO";
 
 export function Services() {
@@ -58,8 +58,7 @@ export function Services() {
         "Intonaci e finiture",
         "Lavori in pietra e mattoni"
       ],
-      image: opereMurarie,
-      imageFit: "contain"
+      image: opereMurarie
     },
     {
       icon: Paintbrush,
@@ -138,13 +137,11 @@ export function Services() {
                 </div>
 
                 <div className={index % 2 === 1 ? "lg:order-1" : ""}>
-                  <div className={`rounded-lg overflow-hidden shadow-accent-red shadow-lg h-[400px] ${
-                    service.imageFit === "contain" ? "bg-boero/15" : ""
-                  }`}>
+                  <div className="rounded-lg overflow-hidden shadow-accent-red shadow-lg h-[400px]">
                     <ImageWithFallback
                       src={service.image}
                       alt={service.title}
-                      className={`w-full h-full ${service.imageFit === "contain" ? "object-contain" : "object-cover"}`}
+                      className="w-full h-full object-cover"
                     />
                   </div>
                 </div>
