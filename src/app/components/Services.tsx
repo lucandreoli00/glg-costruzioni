@@ -58,7 +58,8 @@ export function Services() {
         "Intonaci e finiture",
         "Lavori in pietra e mattoni"
       ],
-      image: opereMurarie
+      image: opereMurarie,
+      imageFit: "contain"
     },
     {
       icon: Paintbrush,
@@ -137,11 +138,13 @@ export function Services() {
                 </div>
 
                 <div className={index % 2 === 1 ? "lg:order-1" : ""}>
-                  <div className="rounded-lg overflow-hidden shadow-accent-red shadow-lg h-[400px]">
+                  <div className={`rounded-lg overflow-hidden shadow-accent-red shadow-lg h-[400px] ${
+                    service.imageFit === "contain" ? "bg-boero/15" : ""
+                  }`}>
                     <ImageWithFallback
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-full object-cover"
+                      className={`w-full h-full ${service.imageFit === "contain" ? "object-contain" : "object-cover"}`}
                     />
                   </div>
                 </div>
