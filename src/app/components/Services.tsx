@@ -3,6 +3,7 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import nuoveCostruzioni from "@/assets/NuoveCostruzioni.webp"
 import ristrutturazioni from "@/assets/P6/020.webp"
 import impermeabilizzazioni from "@/assets/impermeabilizzazioni.webp"
+import opereMurarie from "@/assets/Cinta/Cinta 040.webp"
 import { SEO } from "./SEO";
 
 export function Services() {
@@ -57,7 +58,7 @@ export function Services() {
         "Intonaci e finiture",
         "Lavori in pietra e mattoni"
       ],
-      image: "https://images.unsplash.com/photo-1630259970029-7b1e1160243e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBidWlsZGluZyUyMHNpdGV8ZW58MXx8fHwxNzczMDQyMjg2fDA&ixlib=rb-4.1.0&q=80&w=1080"
+      image: opereMurarie
     },
     {
       icon: Paintbrush,
