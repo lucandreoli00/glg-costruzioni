@@ -43,7 +43,7 @@ export function ProjectSwiper({
 
 
     
-      <div className="relative h-[100px] md:h-[100px] lg:h-[100px] rounded-2xl overflow-hidden shadow-lg shadow-boero/75 hover:shadow-accent-red group">   {/* ← Altezza fissa controllata */}
+      <div className="relative h-[100px] md:h-[100px] lg:h-[100px] rounded-2xl overflow-hidden shadow-lg shadow-accent-red group">   {/* ← Altezza fissa controllata */}
 
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
@@ -117,7 +117,7 @@ export function ProjectSwiper1({
   return (
 
     
-    <div className="relative h-[320px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-lg">   {/* ← Altezza fissa controllata */}
+    <div className="relative h-[320px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-lg shadow-accent-red">   {/* ← Altezza fissa controllata */}
 
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
