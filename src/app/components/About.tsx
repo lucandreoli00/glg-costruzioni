@@ -108,7 +108,7 @@ export function About() {
               </div>
             </div>
 
-            <div className="rounded-lg overflow-hidden shadow-lg">
+            <div className="rounded-lg overflow-hidden shadow-lg shadow-accent-red">
               <ImageWithFallback
                 src="https://images.unsplash.com/photo-1518549160455-6b40bb44f3ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsb21iYXJkeSUyMGl0YWx5JTIwYXJjaGl0ZWN0dXJlfGVufDF8fHx8MTc3MzA1MDczN3ww&ixlib=rb-4.1.0&q=80&w=1080"
                 alt="Architettura Lombarda"
