@@ -13,7 +13,6 @@ export function Services() {
       title: "Nuove Costruzioni",
       description: "Realizziamo edifici residenziali e commerciali chiavi in mano",
       features: [
-        "Progettazione architettonica e strutturale",
         "Costruzione di edifici residenziali",
         "Realizzazione di immobili commerciali",
         "Gestione completa delle pratiche edilizie",
@@ -103,7 +102,7 @@ export function Services() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl mb-4">I Nostri Servizi</h1>
           <p className="text-xl text-stone-700 max-w-2xl mx-auto">
-            Soluzioni complete per ogni esigenza edilizia, dalla progettazione alla realizzazione
+            Soluzioni complete per ogni esigenza edilizia
           </p>
         </div>
       </section>
