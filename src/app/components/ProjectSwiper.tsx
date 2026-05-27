@@ -117,7 +117,7 @@ export function ProjectSwiper1({
   return (
 
     
-    <div className="relative h-[320px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-lg shadow-accent-red">   {/* ← Altezza fissa controllata */}
+    <div className="relative h-[320px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-lg hover:shadow-accent-red transition-shadow duration-300">   {/* ← Altezza fissa controllata */}
 
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
