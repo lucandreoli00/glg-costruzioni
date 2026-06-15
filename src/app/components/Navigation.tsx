@@ -27,7 +27,11 @@ export function Navigation() {
   };
 
   return (
-    <nav className="bg-boero/15 shadow-sm sticky top-0 z-50">
+    <nav className={`shadow-sm sticky top-0 z-50 ${
+      isMenuOpen
+        ? "bg-white/45 backdrop-blur-md md:bg-boero/15 md:backdrop-blur-none"
+        : "bg-boero/15"
+    }`}>
       <div className="font-logo max-w-screen-4xl mx-auto px-4 sm:px-4 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
