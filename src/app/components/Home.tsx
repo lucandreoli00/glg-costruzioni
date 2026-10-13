@@ -5,7 +5,7 @@ import logo from "@/assets/glgLogo.svg";
 import capannone from "@/assets/FotoCellCapannone.jpeg"
 import { ProjectSwiper } from "./ProjectSwiper";
 import nuoveCostruzioni from "@/assets/NuoveCostruzioni.webp"
-import ristrutturazioni from "@/assets/P6/020.webp"
+import ristrutturazioni from "@/assets/Ristrutturazioni.webp"
 import impermeabilizzazioni from "@/assets/impermeabilizzazioni.webp"
 import { SEO } from './SEO'
 
@@ -104,9 +104,9 @@ export function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Link
-              to = "/servizi"
+              to="/servizi#nuove-costruzioni"
               className="bg-boero/15 rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:shadow-accent-red transition-shadow">
-            
+
               <div className="h-48 overflow-hidden">
                 <ImageWithFallback
                   src={nuoveCostruzioni}
@@ -129,7 +129,7 @@ export function Home() {
             </Link>
 
             <Link
-              to = "/servizi"
+              to="/servizi#ristrutturazioni"
               className="bg-boero/15 rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:shadow-accent-red transition-shadow">
               <div className="h-48 overflow-hidden">
                 <ImageWithFallback
@@ -152,8 +152,8 @@ export function Home() {
               </div>
             </Link>
 
-            <Link 
-              to = "/servizi"
+            <Link
+              to="/servizi#impermeabilizzazioni"
               className="bg-boero/15 rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:shadow-accent-red transition-shadow">
               <div className="h-48 overflow-hidden">
                 <ImageWithFallback

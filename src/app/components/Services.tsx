@@ -6,6 +6,8 @@ import impermeabilizzazioni from "@/assets/impermeabilizzazioni.webp"
 import opereMurarie from "@/assets/Cinta/Cinta 020.webp"
 import { SEO } from "./SEO";
 
+const slug = (s: string) => s.toLowerCase().replace(/\s+/g, '-')
+
 export function Services() {
   const services = [
     {
@@ -113,7 +115,8 @@ export function Services() {
             {services.map((service, index) => (
               <div
                 key={service.title}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${
+                id={slug(service.title)}
+                className={`scroll-mt-24 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${
                   index % 2 === 1 ? "lg:flex-row-reverse" : ""
                 }`}
               >
