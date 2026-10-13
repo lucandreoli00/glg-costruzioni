@@ -282,33 +282,33 @@ export function Home() {
 const progetti = [
   {
     id: 1,
-    title: "Platea Villasanta",
-    images: projectImages1.map(src => ({src, alt: "Platea Villasanta"}))
+    title: "Platea Tornio",
+    images: projectImages1.map(src => ({src, alt: "Platea Tornio"}))
   },
   {
     id: 2,
-    title: "Platea Villasanta Esterna",
-    images: projectImages2.map(src => ({src, alt: "Platea Villasanta"}))
+    title: "Tecnored Dry Kit e Boiacca Impermeabilizzante",
+    images: projectImages2.map(src => ({src, alt: "Tecnored Dry Kit e Boiacca Impermeabilizzante"}))
   },
   {
     id: 3,
-    title: "Milano Ristorazione",
-    images: projectImages3.map(src => ({src, alt: "Milano Ristorazione"}))
+    title: "Ristrutturazione Mensa",
+    images: projectImages3.map(src => ({src, alt: "Ristrutturazione Mensa"}))
   },
   {
     id: 4,
-    title: "Monterosso",
-    images: projectImages4.map(src => ({src, alt: "Monterosso"}))
+    title: "Rifacimento Soletta",
+    images: projectImages4.map(src => ({src, alt: "Rifacimento Soletta"}))
   },
   {
     id: 5,
-    title: "Forte dei Marmi",
-    images: projectImages5.map(src => ({src, alt: "Forte dei Marmi"}))
+    title: "Tecnored Dry Kit e Boiacca Impermeabilizzante",
+    images: projectImages5.map(src => ({src, alt: "Tecnored Dry Kit e Boiacca Impermeabilizzante"}))
   },
   {
     id: 6,
-    title: "App",
-    images: projectImages6.map(src => ({src, alt: "App"}))
+    title: "Tecnored Consolidamento pareti e Dry Kit",
+    images: projectImages6.map(src => ({src, alt: "Tecnored Consolidamento pareti e Dry Kit"}))
   },
   // aggiungi altri progetti...
 ];
