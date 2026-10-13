@@ -12,12 +12,19 @@ export function Contact() {
   message: "",
 });
 
-const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+const [status, setStatus] = useState<"idle" | "loading" | "success" | "error" | "maintenance">("idle");
 const [mapLoaded, setMapLoaded] = useState(false);
 const [privacyAccepted, setPrivacyAccepted] = useState(false);
 
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
+
+  // TEMPORANEO: form in manutenzione finche' Resend non e' verificato
+  // sul dominio. Da rimuovere ripristinando il try/catch sottostante.
+  setStatus("maintenance");
+  return;
+
+  // eslint-disable-next-line no-unreachable
   setStatus("loading");
 
   try {
@@ -168,6 +175,21 @@ const handleSubmit = async (e: React.FormEvent) => {
                 {status === "success" && (
                   <div className="mb-6 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded">
                     Grazie! La tua richiesta è stata inviata. Ti risponderemo al più presto.
+                  </div>
+                )}
+
+                {status === "maintenance" && (
+                  <div className="mb-6 bg-amber-50 border border-amber-200 text-amber-800 px-4 py-3 rounded">
+                    <strong>Modulo contatti temporaneamente non disponibile.</strong>
+                    <br />
+                    Il sito è in fase di manutenzione. Per inviarci la tua richiesta scrivici direttamente a{" "}
+                    <a
+                      href="mailto:info@glgcostruzioni.it"
+                      className="underline font-medium hover:text-amber-900"
+                    >
+                      info@glgcostruzioni.it
+                    </a>
+                    .
                   </div>
                 )}
 
