@@ -7,7 +7,7 @@ import { SEO } from "./SEO";
  * compilati/verificati con un consulente privacy prima della pubblicazione.
  */
 export function PrivacyPolicy() {
-  const ultimoAggiornamento = "5/19/2026";
+  const ultimoAggiornamento = "13/10/2026";
 
   return (
     <div className="font-logo">
