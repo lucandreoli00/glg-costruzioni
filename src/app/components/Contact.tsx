@@ -178,21 +178,6 @@ const handleSubmit = async (e: React.FormEvent) => {
                   </div>
                 )}
 
-                {status === "maintenance" && (
-                  <div className="mb-6 bg-amber-50 border border-amber-200 text-amber-800 px-4 py-3 rounded">
-                    <strong>Modulo contatti temporaneamente non disponibile.</strong>
-                    <br />
-                    Il sito è in fase di manutenzione. Per inviarci la tua richiesta scrivici direttamente a{" "}
-                    <a
-                      href="mailto:info@glgcostruzioni.it"
-                      className="underline font-medium hover:text-amber-900"
-                    >
-                      info@glgcostruzioni.it
-                    </a>
-                    .
-                  </div>
-                )}
-
                 {status === "error" && (
                   <div className="mb-6 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded">
                     Si è verificato un errore. Riprova o contattaci direttamente per email.
@@ -317,6 +302,21 @@ const handleSubmit = async (e: React.FormEvent) => {
                     <Send className="size-5" />
                     {status === "loading" ? "Invio in corso..." : "Invia Messaggio"}
                   </button>
+
+                  {status === "maintenance" && (
+                    <div className="mt-4 bg-amber-50 border border-amber-200 text-amber-800 px-4 py-3 rounded">
+                      <strong>Modulo contatti temporaneamente non disponibile.</strong>
+                      <br />
+                      Il sito è in fase di manutenzione. Per inviarci la tua richiesta scrivici direttamente a{" "}
+                      <a
+                        href="mailto:info@glgcostruzioni.it"
+                        className="underline font-medium hover:text-amber-900"
+                      >
+                        info@glgcostruzioni.it
+                      </a>
+                      .
+                    </div>
+                  )}
 
                   <p className="text-sm text-gray-500">
                     * Campi obbligatori
