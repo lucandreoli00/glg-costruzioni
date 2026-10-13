@@ -109,7 +109,7 @@ export function About() {
               </div>
             </div>
 
-            <div className="rounded-lg overflow-hidden shadow-lg shadow-accent-red">
+            <div className="rounded-lg overflow-hidden shadow-lg shadow-accent-red h-[400px]">
               <ImageWithFallback
                 src={laNostraStoria}
                 alt="Interno di una nostra realizzazione"
