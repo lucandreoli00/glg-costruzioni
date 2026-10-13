@@ -188,7 +188,7 @@ export function Home() {
             {progetti.map((progetto) => (
                           <Link
                            key={progetto.id}
-                           to="/chi-siamo#progetti"
+                           to={`/chi-siamo#progetto-${progetto.id}`}
                            className="block group"
                           >
                             <ProjectSwiper 

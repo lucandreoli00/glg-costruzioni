@@ -132,8 +132,12 @@ export function About() {
 
           <div className="grid grid-cols-1 md:grid-cols-1  lg:grid-cols-2 grid-rows-3 gap-8">
             {progetti.map((progetto) => (
-              <div key={progetto.id} className="max-h[200px]">
-                <ProjectSwiper1 
+              <div
+                key={progetto.id}
+                id={`progetto-${progetto.id}`}
+                className="scroll-mt-24 max-h[200px]"
+              >
+                <ProjectSwiper1
                   images={progetto.images}
                   projectTitle={progetto.title}
                 />
