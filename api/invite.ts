@@ -9,7 +9,7 @@ const supabase = createClient(
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const SITE_URL = process.env.VITE_SITE_URL ?? "https://glg-costruzioni-git-alternativa-lucandreoli00s-projects.vercel.app";
+const SITE_URL = process.env.VITE_SITE_URL ?? "https://glgcostruzioni.it";
 
 // Cerca un utente per email scorrendo tutte le pagine. listUsers pagina
 // a 50 di default: senza questo gli utenti oltre la prima pagina non

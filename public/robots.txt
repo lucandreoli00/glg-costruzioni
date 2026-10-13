@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /
 
-Sitemap: https://glg-ccostruzioni.vercel.app/sitemap.xml
+Sitemap: https://glgcostruzioni.it/sitemap.xml
