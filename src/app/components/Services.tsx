@@ -1,7 +1,7 @@
 import { Building2, Home, Wrench, Hammer, Paintbrush, Zap, Check, Umbrella } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import nuoveCostruzioni from "@/assets/NuoveCostruzioni.webp"
-import ristrutturazioni from "@/assets/P6/020.webp"
+import ristrutturazioni from "@/assets/Ristrutturazioni.webp"
 import impermeabilizzazioni from "@/assets/impermeabilizzazioni.webp"
 import opereMurarie from "@/assets/Cinta/Cinta 020.webp"
 import { SEO } from "./SEO";
