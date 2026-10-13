@@ -57,9 +57,14 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-white mb-4">Contatti</h3>
             <ul className="space-y-3 text-sm">
-              <li className="flex items-start gap-2 text-white">
-                <MapPin className="size-5 text-accent-red flex-shrink-0 mt-0.5" />
-                <span>Via Oreno 25, 20863 Concorezzo (MB)</span>
+              <li>
+                <Link
+                  to="/contatti#mappa"
+                  className="flex items-start gap-2 text-white hover:text-stone-400 transition-colors text-left"
+                >
+                  <MapPin className="size-5 text-accent-red flex-shrink-0 mt-0.5" />
+                  <span>Via Oreno 25, 20863 Concorezzo (MB)</span>
+                </Link>
               </li>
               <li className="flex items-center gap-2 text-white">
                 <Phone className="size-5 text-accent-red flex-shrink-0" />

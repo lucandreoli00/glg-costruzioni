@@ -127,7 +127,7 @@ const handleSubmit = async (e: React.FormEvent) => {
               {/* Mappa — caricata solo previo clic esplicito dell'utente:
                   nessun dato inviato a Google né cookie di terze parti finché
                   l'utente non attiva la mappa (conformità privacy by design). */}
-              <div className="mt-8 rounded-lg overflow-hidden shadow-md h-64 bg-gray-200">
+              <div id="mappa" className="scroll-mt-24 mt-8 rounded-lg overflow-hidden shadow-md h-64 bg-gray-200">
                 {mapLoaded ? (
                   <iframe
                     title="Mappa sede GLG Costruzioni"
