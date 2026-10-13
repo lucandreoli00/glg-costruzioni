@@ -38,11 +38,10 @@ export function Services() {
       title: "Impermeabilizzazioni",
       description: "Servizi di impermeabilizzazione, manutenzione ordinaria e straordinaria",
       features: [
-        "Manutenzione ordinaria immobili",
-        "Riparazione e consolidamento strutture",
         "Impermeabilizzazioni e isolamenti",
+        "Riparazione e consolidamento strutture",
         "Rifacimento tetti e coperture",
-        "Manutenzione impianti"
+        "Manutenzione ordinaria immobili"
       ],
       image: impermeabilizzazioni
     },
