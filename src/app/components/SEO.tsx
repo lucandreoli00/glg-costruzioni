@@ -10,7 +10,7 @@ interface SEOProps {
 const SITE_NAME = 'GLG Costruzioni'
 const DEFAULT_DESCRIPTION = 'Impresa edile a Concorezzo, Lombardia. Specializzati in costruzioni residenziali, commerciali, ristrutturazioni e trattamenti Tecnored per impermeabilizzazione.'
 const DEFAULT_IMAGE = 'https://glg-costruzioni.vercel.app/og-image.jpg'
-const BASE_URL = 'https://glg-costruzioni.vercel.app'
+const BASE_URL = 'https://glgcostruzioni.it'
 
 export function SEO({ title, description, image, url }: SEOProps) {
   const fullTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME
