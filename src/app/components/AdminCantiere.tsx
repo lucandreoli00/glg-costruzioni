@@ -89,7 +89,7 @@ export function AdminCantiere() {
   async function fetchLog() {
     const { data } = await supabase
       .from('log_accessi')
-      .select('*, profiles(nome, cognome), documenti(nome)')
+      .select('*, profiles(nome, cognome), documenti!inner(nome, cantiere_id)')
       .eq('documenti.cantiere_id', id)
       .order('created_at', { ascending: false })
       .limit(50)

@@ -42,7 +42,7 @@ export function PrivacyPolicy() {
               con sede in Via Oreno 25, 20863 Concorezzo (MB), Italia.
             </p>
             <ul className="list-disc pl-6 mt-2 space-y-1">
-              <li>P. IVA / C.F.: [DA COMPLETARE]</li>
+              <li>P. IVA / C.F.: 08428930963</li>
               <li>Email: info@glgcostruzioni.it</li>
               <li>Email dedicata privacy: segreteriatecnica@glgcostruzioni.it</li>
               <li>Telefono: +39 039 616229</li>
