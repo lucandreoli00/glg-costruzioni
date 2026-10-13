@@ -7,6 +7,21 @@ export function docPath(stored: string) {
     : stored
 }
 
+// Sanitizza un nome file per uso come path storage: toglie accenti,
+// caratteri non ASCII/non sicuri, converte spazi in underscore,
+// preserva l'estensione.
+export function sanitizeFilename(name: string) {
+  const dot = name.lastIndexOf('.')
+  const base = dot > 0 ? name.slice(0, dot) : name
+  const ext = dot > 0 ? name.slice(dot) : ''
+  const safe = base
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-zA-Z0-9._-]/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_+|_+$/g, '')
+  return (safe || 'file') + ext.toLowerCase()
+}
+
 // Ottiene un signed URL temporaneo via endpoint serverless e apre il documento.
 // La finestra viene aperta sincronicamente nel gesto utente per evitare il
 // blocco popup, poi reindirizzata all'URL firmato.

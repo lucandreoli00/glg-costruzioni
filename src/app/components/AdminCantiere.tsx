@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { supabase } from '@/lib/supabase.ts'
-import { openDocumento, docPath } from '@/lib/storage.ts'
+import { openDocumento, docPath, sanitizeFilename } from '@/lib/storage.ts'
 import { useAuth } from '@/context/AuthContext.tsx'
 import { ArrowLeft, LogOut, Upload, Trash2, Eye, EyeOff, Users, FileText, Image, File, UserPlus } from 'lucide-react'
 import logo from '@/assets/glgLogo.svg'
@@ -111,7 +111,7 @@ export function AdminCantiere() {
       : 'altro'
 
     // Upload su Supabase Storage
-    const path = `${id}/${Date.now()}_${file.name}`
+    const path = `${id}/${Date.now()}_${sanitizeFilename(file.name)}`
     const { error: uploadError } = await supabase.storage
       .from('documenti')
       .upload(path, file)

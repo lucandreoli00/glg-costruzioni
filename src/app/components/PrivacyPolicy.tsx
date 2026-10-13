@@ -1,11 +1,6 @@
 import { Link } from "react-router";
 import { SEO } from "./SEO";
 
-/**
- * BOZZA Privacy Policy — GDPR art. 13.
- * I segnaposto [DA COMPLETARE] e le note [DA VALIDARE LEGALMENTE] vanno
- * compilati/verificati con un consulente privacy prima della pubblicazione.
- */
 export function PrivacyPolicy() {
   const ultimoAggiornamento = "13/10/2026";
 

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { supabase } from '@/lib/supabase.ts'
-import { openDocumento, softDeleteDocumento } from '@/lib/storage.ts'
+import { openDocumento, softDeleteDocumento, sanitizeFilename } from '@/lib/storage.ts'
 import { useAuth } from '@/context/AuthContext.tsx'
 import { FileText, Download, ArrowLeft, LogOut, Image, File, Upload, Trash2 } from 'lucide-react'
 import logo from '@/assets/glgLogo.svg'
@@ -79,7 +79,7 @@ export function PortaleDettaglio() {
       : ['xlsx', 'xls'].includes(ext) ? 'excel'
       : 'altro'
 
-    const path = `clienti/${id}/${user!.id}/${Date.now()}_${file.name}`
+    const path = `clienti/${id}/${user!.id}/${Date.now()}_${sanitizeFilename(file.name)}`
     const { error: uploadError } = await supabase.storage
       .from('documenti')
       .upload(path, file)
