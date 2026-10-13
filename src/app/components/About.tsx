@@ -32,8 +32,8 @@ const progetti = [
   },
   {
     id: 2,
-    title: "Tecnored Dry Kit e Boiacca Impermeabilizzante",
-    images: projectImages2.map(src => ({src, alt: "Tecnored Dry Kit e Boiacca Impermeabilizzante"}))
+    title: "Tecnored Consolidamento pareti e Boiacca Impermeabilizzante",
+    images: projectImages2.map(src => ({src, alt: "Tecnored Consolidamento pareti e Boiacca Impermeabilizzante"}))
   },
   {
     id: 3,
