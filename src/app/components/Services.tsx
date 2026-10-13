@@ -5,6 +5,7 @@ import ristrutturazioni from "@/assets/Ristrutturazioni.webp"
 import impermeabilizzazioni from "@/assets/impermeabilizzazioni.webp"
 import opereMurarie from "@/assets/Cinta/Cinta 020.webp"
 import { SEO } from "./SEO";
+import { Link } from "react-router";
 
 const slug = (s: string) => s.toLowerCase().replace(/\s+/g, '-')
 
@@ -159,12 +160,12 @@ export function Services() {
           <p className="text-xl text-gray-600 mb-8">
             Contattaci per discutere del tuo progetto e ricevere un preventivo personalizzato
           </p>
-          <a
-            href="/contatti"
+          <Link
+            to="/contatti"
             className="bg-accent-red hover:bg-stone-800 text-white px-8 py-3 rounded-lg transition-colors inline-block"
           >
             Richiedi Informazioni
-          </a>
+          </Link>
         </div>
       </section>
     </div>
