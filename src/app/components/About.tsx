@@ -123,7 +123,7 @@ export function About() {
 
 
       {/* I nostri progetti */}
-<section className="font-logo py-16 bg-white">
+<section id="progetti" className="scroll-mt-24 font-logo py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-logo text-4xl font-semibold mb-4">I Nostri Progetti</h2>
