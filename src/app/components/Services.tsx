@@ -4,6 +4,7 @@ import nuoveCostruzioni from "@/assets/NuoveCostruzioni.webp"
 import ristrutturazioni from "@/assets/Ristrutturazioni.webp"
 import impermeabilizzazioni from "@/assets/impermeabilizzazioni.webp"
 import opereMurarie from "@/assets/Cinta/Cinta 020.webp"
+import finiture from "@/assets/Finiture.webp"
 import { SEO } from "./SEO";
 import { Link } from "react-router";
 
@@ -72,7 +73,7 @@ export function Services() {
         "Cappotti termici",
         "Decorazioni e stucchi"
       ],
-      image: "https://images.unsplash.com/photo-1763218161026-dd8bcfa832de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3VzZSUyMHJlbm92YXRpb258ZW58MXx8fHwxNzczMDQ5MzYzfDA&ixlib=rb-4.1.0&q=80&w=1080"
+      image: finiture
     }
     
   ];
