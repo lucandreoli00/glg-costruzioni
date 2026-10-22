@@ -64,7 +64,7 @@ export function About() {
       <SEO
             title="Chi Siamo"
             description="Scopri il team di GLG Costruzioni, guarda i nostri progetti"
-            url="/"
+            url="/chi-siamo"
       />
 
       {/* Hero Section */}

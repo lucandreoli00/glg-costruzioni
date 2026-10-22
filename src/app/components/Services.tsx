@@ -97,7 +97,7 @@ export function Services() {
       <SEO
             title="Servizi"
             description="Servizi costruzioni residenziali, commerciali, ristrutturazioni e impermeabilizzazioni.  GLG Costruzioni opera in tutta la Lombardia."
-            url="/"
+            url="/servizi"
       />
 
       {/* Hero Section */}

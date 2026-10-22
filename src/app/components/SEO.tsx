@@ -9,8 +9,8 @@ interface SEOProps {
 
 const SITE_NAME = 'GLG Costruzioni'
 const DEFAULT_DESCRIPTION = 'Impresa edile a Concorezzo, Lombardia. Specializzati in costruzioni residenziali, commerciali, ristrutturazioni e trattamenti Tecnored per impermeabilizzazione.'
-const DEFAULT_IMAGE = 'https://glgcostruzioni.it/og-image.jpg'
-const BASE_URL = 'https://glgcostruzioni.it'
+const DEFAULT_IMAGE = 'https://www.glgcostruzioni.it/og-image.jpg'
+const BASE_URL = 'https://www.glgcostruzioni.it'
 
 export function SEO({ title, description, image, url }: SEOProps) {
   const fullTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME
@@ -41,7 +41,7 @@ export function SEO({ title, description, image, url }: SEOProps) {
       <meta name="twitter:image" content={metaImage} />
 
       {/* Extra */}
-      <meta name="robots" content="noindex, nofollow" />
+      <meta name="robots" content="index, follow" />
       <meta name="author" content={SITE_NAME} />
       <meta name="geo.region" content="IT-MB" />
       <meta name="geo.placename" content="Concorezzo" />

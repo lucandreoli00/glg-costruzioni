@@ -1,4 +1,11 @@
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /admin
+Disallow: /portale
+Disallow: /login
+Disallow: /set-password
+Disallow: /reset-password
+Disallow: /cambia-password
+Disallow: /api/
 
-Sitemap: https://glgcostruzioni.it/sitemap.xml
+Sitemap: https://www.glgcostruzioni.it/sitemap.xml

@@ -50,7 +50,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       <SEO
             title="Contatti"
             description="Contatta GLG Costruzioni per un preventivo gratuito. Sede a Concorezzo, serviamo in tutta la Lombardia."
-            url="/"
+            url="/contatti"
       />
       {/* Hero Section */}
       <section className="bg-boero/15 text-stone-700 py-20">
