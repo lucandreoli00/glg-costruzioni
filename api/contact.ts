@@ -15,7 +15,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    await resend.emails.send({
+    const { error: sendError } = await resend.emails.send({
       from: "GLG Costruzioni <noreply@mail.glgcostruzioni.it>",
       to: "segreteriatecnica@glgcostruzioni.it",
       replyTo: email,
@@ -31,6 +31,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         </table>
       `,
     });
+
+    if (sendError) {
+      console.error("Errore Resend:", sendError);
+      return res.status(500).json({ error: "Errore durante l'invio" });
+    }
 
     return res.status(200).json({ success: true });
   } catch (error) {
