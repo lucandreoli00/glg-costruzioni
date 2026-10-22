@@ -1,6 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
+import { randomBytes } from "crypto";
 
 const supabase = createClient(
   process.env.VITE_SUPABASE_URL!,
@@ -51,7 +52,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     } else {
       const { data, error } = await supabase.auth.admin.createUser({
         email,
-        password: email,
+        password: randomBytes(24).toString("base64url"),
         email_confirm: true,
         user_metadata: {
           nome,
@@ -81,7 +82,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       if (linkError) throw linkError;
 
       const { error: emailError } = await resend.emails.send({
-        from: "GLG Costruzioni <onboarding@resend.dev>",
+        from: "GLG Costruzioni <noreply@mail.glgcostruzioni.it>",
         to: email,
         subject: "Accesso al Portale Clienti GLG Costruzioni",
         html: `
