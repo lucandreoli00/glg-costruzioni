@@ -45,10 +45,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const existing = await findUserByEmail(email);
 
     let userId: string;
-    let isNew = false;
+    let sendLink = false;
 
     if (existing) {
       userId = existing.id;
+      // Invitato in passato ma non ha mai impostato la password: rimanda il link
+      sendLink = existing.user_metadata?.password_set === false;
     } else {
       const { data, error } = await supabase.auth.admin.createUser({
         email,
@@ -64,7 +66,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
       if (error) throw error;
       userId = data.user.id;
-      isNew = true;
+      sendLink = true;
     }
 
     await supabase.from("cantieri_utenti").upsert(
@@ -72,7 +74,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       { onConflict: "cantiere_id,user_id" }
     );
 
-    if (isNew) {
+    if (sendLink) {
       // Genera link firmato con token — il click crea una sessione valida direttamente
       const { data: linkData, error: linkError } = await supabase.auth.admin.generateLink({
         type: "recovery",
